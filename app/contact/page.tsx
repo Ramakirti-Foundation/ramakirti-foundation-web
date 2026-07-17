@@ -1,162 +1,159 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
+'use client';
+
+import { useState } from 'react';
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
-import { ContactForm } from '@/app/components/ContactForm'; // I'll assume this exists or I will create it. If it doesn't exist, I'll write it inline.
 
-export const metadata: Metadata = {
-  title: 'Contact Us | Ramakirti Foundation',
-  description: 'Contact Ramakirti Foundation. 89 ff Housing Board Society Sec 33 Gurgaon, Near Yaduvanshi School, 122022. Near Government School Tigra, Sector-57.',
-};
+interface ContactForm {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+}
 
 export default function ContactPage() {
+  const [form, setForm] = useState<ContactForm>({ name: '', email: '', phone: '', subject: '', message: '' });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const update = (k: keyof ContactForm, v: string) => setForm((prev) => ({ ...prev, [k]: v }));
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!form.name || !form.email || !form.message) {
+      setErrorMsg('Please fill in all required fields.');
+      return;
+    }
+    setStatus('loading');
+    setErrorMsg('');
+    try {
+      const res = await fetch('/api/contact/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error('Send failed');
+      setStatus('success');
+    } catch {
+      setErrorMsg('Could not send message. Please email us directly or WhatsApp.');
+      setStatus('error');
+    }
+  }
+
   return (
     <>
       <Navigation />
-      <main id="main-content">
-        {/* Page Hero */}
-        <section
-          className="relative text-white overflow-hidden flex items-center"
-          style={{
-            paddingTop: 'calc(72px + 48px)',
-            paddingBottom: '64px',
-            minHeight: '340px',
-            background: 'linear-gradient(135deg, #3A0D0B 0%, #6E1110 60%, #8B2520 100%)',
-          }}
-        >
-          <div className="absolute top-[-30%] right-[-8%] w-[500px] h-[500px] rounded-full pointer-events-none"
-            style={{ background: 'radial-gradient(circle, rgba(201,168,76,.2), transparent 58%)' }} />
-          
-          <div className="relative z-10 w-full max-w-[1280px] mx-auto px-5 text-center">
-            <div className="flex items-center justify-center gap-2 text-sm mb-5" style={{ color: 'rgba(255,255,255,.55)' }}>
-              <Link href="/" className="hover:text-white transition-colors" style={{ color: 'rgba(255,255,255,.55)' }}>Home</Link>
-              <span>›</span>
-              <span className="text-white">Contact Us</span>
-            </div>
-            <h1 className="text-white font-extrabold mb-4" style={{ fontSize: 'clamp(32px, 5vw, 56px)', fontFamily: 'var(--font-plus-jakarta, sans-serif)' }}>
-              Get In Touch
+      <main className="pt-20">
+        {/* Hero */}
+        <section className="bg-gradient-to-br from-[#3A0D0B] via-[#651A16] to-[#8B2520] py-24 px-6 text-center">
+          <div className="max-w-[700px] mx-auto">
+            <span className="text-[#E5C96A] font-[family-name:var(--font-plus-jakarta)] font-bold text-sm uppercase tracking-[.15em]">Reach Out</span>
+            <h1 className="text-[clamp(28px,4vw,44px)] font-[family-name:var(--font-plus-jakarta)] font-extrabold text-white mt-2 mb-4">
+              Contact Us
             </h1>
-            <p style={{ color: 'rgba(255,255,255,.8)', fontSize: '18px', maxWidth: '640px', margin: '0 auto', lineHeight: '1.6' }}>
-              We'd love to hear from you. Reach out to us for volunteering, donations, or any questions about our initiatives.
-            </p>
+            <p className="text-white/78 text-[18px]">Whether you want to donate, partner, or simply know more — we&apos;re here.</p>
           </div>
         </section>
 
-        {/* Contact Info & Form */}
-        <section className="py-24 bg-[#FDF8F7]">
-          <div className="max-w-[1280px] mx-auto px-5">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-              
-              {/* Contact Info */}
-              <div>
-                <span className="font-bold text-sm uppercase tracking-[.15em] mb-4 block" style={{ color: '#C9A84C', fontFamily: 'var(--font-plus-jakarta, sans-serif)' }}>
-                  Contact Information
-                </span>
-                <h2 className="font-extrabold mb-8" style={{ color: '#6E1110', fontSize: 'clamp(28px,4vw,36px)', fontFamily: 'var(--font-plus-jakarta, sans-serif)' }}>
-                  We are here to help
-                </h2>
-                
-                <div className="space-y-8">
-                  {/* Phone */}
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-[#C9A84C]/20 flex items-center justify-center flex-shrink-0 text-[#6E1110] text-xl">
-                      📞
+        <section className="py-24 px-6">
+          <div className="max-w-[1200px] mx-auto grid lg:grid-cols-[1.2fr_1fr] gap-16 items-start">
+            {/* Contact info */}
+            <div>
+              <h2 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[28px] text-[#651A16] mb-8">Get in Touch</h2>
+              <div className="space-y-6">
+                {[
+                  { icon: '📍', title: 'Address', content: '89 FF Housing Board Society, Sector 33, Gurgaon — 122022, Haryana' },
+                  { icon: '📞', title: 'Phone / WhatsApp', content: '+91 88515-02840', href: 'tel:+918851502840' },
+                  { icon: '✉️', title: 'Email', content: 'support@ramakirtifoundation.co.in', href: 'mailto:support@ramakirtifoundation.co.in' },
+                  { icon: '🕐', title: 'Office Hours', content: 'Monday to Saturday, 9 AM – 6 PM IST' },
+                ].map(({ icon, title, content, href }) => (
+                  <div key={title} className="flex gap-4 items-start">
+                    <div className="w-12 h-12 rounded-xl bg-[rgba(101,26,22,.1)] flex items-center justify-center text-[22px] flex-shrink-0">
+                      {icon}
                     </div>
                     <div>
-                      <h3 className="font-bold text-[#6E1110] mb-1">Call Us</h3>
-                      <a href="tel:+918851502840" className="text-gray-600 hover:text-[#6E1110] transition-colors block">
-                        +91 88515 02840
-                      </a>
+                      <div className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[15px] text-gray-800 mb-0.5">{title}</div>
+                      {href ? (
+                        <a href={href} className="text-[#651A16] font-semibold hover:underline no-underline">{content}</a>
+                      ) : (
+                        <p className="text-gray-600 text-sm">{content}</p>
+                      )}
                     </div>
                   </div>
-                  
-                  {/* Email */}
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-[#C9A84C]/20 flex items-center justify-center flex-shrink-0 text-[#6E1110] text-xl">
-                      ✉️
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-[#6E1110] mb-1">Email Us</h3>
-                      <a href="mailto:support@ramakirtifoundation.co.in" className="text-gray-600 hover:text-[#6E1110] transition-colors block mb-1">
-                        support@ramakirtifoundation.co.in
-                      </a>
-                      <a href="mailto:info@ramakirtifoundation.co.in" className="text-gray-600 hover:text-[#6E1110] transition-colors block">
-                        info@ramakirtifoundation.co.in
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Address 1 */}
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-[#C9A84C]/20 flex items-center justify-center flex-shrink-0 text-[#6E1110] text-xl">
-                      📍
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-[#6E1110] mb-1">Head Office</h3>
-                      <a href="https://goo.gl/maps/mhnKEN5UaaowGZuJ6" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-[#6E1110] transition-colors block">
-                        89 ff Housing Board Society Sec 33 Gurgaon,<br />
-                        Near Yaduvanshi School, 122022
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Address 2 */}
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-[#C9A84C]/20 flex items-center justify-center flex-shrink-0 text-[#6E1110] text-xl">
-                      📍
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-[#6E1110] mb-1">Education Centre</h3>
-                      <a href="https://maps.app.goo.gl/j7Vvy9ZRwFiZ33yUA" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-[#6E1110] transition-colors block">
-                        Near Government School Tigra, Sector-57,<br />
-                        Gurgaon
-                      </a>
-                    </div>
-                  </div>
-
-                </div>
-                
-                {/* Socials */}
-                <div className="mt-12 pt-8 border-t border-gray-200">
-                  <h3 className="font-bold text-[#6E1110] mb-4">Follow Our Work</h3>
-                  <div className="flex gap-4">
-                    <a href="https://www.facebook.com/ramakirtifoundation.org/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#6E1110] text-white flex items-center justify-center hover:bg-[#C9A84C] transition-colors">f</a>
-                    <a href="https://www.instagram.com/ramakirtifoundation/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#6E1110] text-white flex items-center justify-center hover:bg-[#C9A84C] transition-colors">in</a>
-                    <a href="https://www.linkedin.com/company/96037665/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#6E1110] text-white flex items-center justify-center hover:bg-[#C9A84C] transition-colors">li</a>
-                    <a href="https://www.youtube.com/channel/UCY9gGWwrWTdLH6mxEDo6LFA" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#6E1110] text-white flex items-center justify-center hover:bg-[#C9A84C] transition-colors">yt</a>
-                  </div>
-                </div>
+                ))}
               </div>
 
-              {/* Form */}
-              <div className="bg-white rounded-2xl p-8 md:p-10 shadow-lg border border-gray-100">
-                <h3 className="font-extrabold text-[24px] text-[#6E1110] font-[family-name:var(--font-plus-jakarta)] mb-6">
-                  Send us a Message
-                </h3>
-                {/* Fallback to simple form if ContactForm isn't defined correctly */}
-                <form action="#" method="POST" className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
-                    <input type="text" id="name" name="name" required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#6E1110] focus:ring-1 focus:ring-[#6E1110] outline-none transition-colors" placeholder="Your name" />
+              {/* WhatsApp CTA */}
+              <div className="mt-10 p-6 bg-[#F0FCF4] border border-[rgba(37,211,102,.2)] rounded-2xl">
+                <h3 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-gray-800 mb-2">💬 Instant Support</h3>
+                <p className="text-gray-600 text-sm mb-4">For quick queries, WhatsApp us directly. We typically reply within 2 hours.</p>
+                <a
+                  href="https://wa.me/918851502840?text=Hi%20Ramakirti%20Foundation%2C%20I%20would%20like%20to%20know%20more"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#25D366] text-white font-[family-name:var(--font-plus-jakarta)] font-bold px-6 py-3 rounded-xl hover:bg-[#1FAF53] transition-colors no-underline"
+                >
+                  WhatsApp Now →
+                </a>
+              </div>
+
+              {/* Corporate CSR */}
+              <div className="mt-6 p-6 bg-[#FBF5E0] border border-[rgba(201,168,76,.3)] rounded-2xl">
+                <h3 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-[#651A16] mb-2">🏢 Corporate CSR / Partnerships</h3>
+                <p className="text-gray-600 text-sm">
+                  Looking to fulfill your CSR mandate or partner with a transparent NGO? We offer employee volunteering, brand placement, and impact reporting. Email us at{' '}
+                  <a href="mailto:csr@ramakirtifoundation.co.in" className="text-[#651A16] font-bold hover:underline no-underline">
+                    csr@ramakirtifoundation.co.in
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            {/* Form */}
+            <div>
+              {status === 'success' ? (
+                <div className="bg-white rounded-3xl p-10 shadow-[0_4px_32px_rgba(101,26,22,.1)] border border-[rgba(101,26,22,.08)] text-center">
+                  <div className="text-[64px] mb-4">✅</div>
+                  <h3 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[24px] text-[#651A16] mb-3">Message Sent!</h3>
+                  <p className="text-gray-500">Thank you, {form.name.split(' ')[0]}. We&apos;ll get back to you at <strong>{form.email}</strong> within 24 hours.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-8 md:p-10 shadow-[0_4px_32px_rgba(101,26,22,.1)] border border-[rgba(101,26,22,.08)]">
+                  <h2 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[22px] text-[#651A16] mb-6">Send a Message</h2>
+                  <div className="space-y-4">
+                    <input type="text" placeholder="Your Name *" value={form.name} onChange={(e) => update('name', e.target.value)}
+                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-[16px] font-[family-name:var(--font-plus-jakarta)] focus:outline-none focus:border-[#651A16]" required />
+                    <input type="email" placeholder="Email Address *" value={form.email} onChange={(e) => update('email', e.target.value)}
+                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-[16px] font-[family-name:var(--font-plus-jakarta)] focus:outline-none focus:border-[#651A16]" required />
+                    <input type="tel" placeholder="Phone (optional)" value={form.phone} onChange={(e) => update('phone', e.target.value)}
+                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-[16px] font-[family-name:var(--font-plus-jakarta)] focus:outline-none focus:border-[#651A16]" />
+                    <select value={form.subject} onChange={(e) => update('subject', e.target.value)}
+                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-[16px] font-[family-name:var(--font-plus-jakarta)] focus:outline-none focus:border-[#651A16] bg-white">
+                      <option value="">Subject</option>
+                      <option value="General Enquiry">General Enquiry</option>
+                      <option value="Donation">Donation / Payment Help</option>
+                      <option value="Volunteer">Volunteering</option>
+                      <option value="Corporate CSR">Corporate CSR</option>
+                      <option value="Partnership">Partnership</option>
+                      <option value="Media">Media / Press</option>
+                    </select>
+                    <textarea placeholder="Your Message *" value={form.message} onChange={(e) => update('message', e.target.value)}
+                      rows={5} required
+                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-[16px] font-[family-name:var(--font-plus-jakarta)] focus:outline-none focus:border-[#651A16] resize-none" />
                   </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-                    <input type="email" id="email" name="email" required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#6E1110] focus:ring-1 focus:ring-[#6E1110] outline-none transition-colors" placeholder="Your email address" />
-                  </div>
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                    <input type="text" id="subject" name="subject" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#6E1110] focus:ring-1 focus:ring-[#6E1110] outline-none transition-colors" placeholder="How can we help?" />
-                  </div>
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Message *</label>
-                    <textarea id="message" name="message" rows={5} required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#6E1110] focus:ring-1 focus:ring-[#6E1110] outline-none transition-colors resize-y" placeholder="Your message here..."></textarea>
-                  </div>
-                  <button type="submit" className="w-full bg-[#6E1110] hover:bg-[#8B2520] text-white font-bold py-4 px-8 rounded-lg transition-colors shadow-md">
-                    Send Message
+                  {errorMsg && <div className="bg-red-50 border border-red-200 rounded-xl p-3 text-sm text-red-700 mt-4 mb-2">{errorMsg}</div>}
+                  <button
+                    type="submit"
+                    disabled={status === 'loading'}
+                    className="w-full mt-5 bg-[#651A16] text-white font-[family-name:var(--font-plus-jakarta)] font-bold text-[16px] py-4 rounded-xl hover:bg-[#8B2520] disabled:opacity-50 transition-all flex items-center justify-center gap-2"
+                  >
+                    {status === 'loading' ? (
+                      <><span className="inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Sending…</>
+                    ) : 'Send Message →'}
                   </button>
                 </form>
-              </div>
-
+              )}
             </div>
           </div>
         </section>
