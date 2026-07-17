@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
 import { db } from '@/lib/db';
@@ -101,12 +100,12 @@ export default async function RecentInitiativesPage() {
                     {/* Cover */}
                     <div className="relative overflow-hidden" style={{ height: '200px', background: '#f3eeed' }}>
                       {initiative.coverImage ? (
-                        <Image
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
                           src={initiative.coverImage}
                           alt={initiative.name}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          className="object-cover initiative-cover-img"
+                          className="w-full h-full object-cover initiative-cover-img"
+                          loading="lazy"
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-5xl">📸</div>

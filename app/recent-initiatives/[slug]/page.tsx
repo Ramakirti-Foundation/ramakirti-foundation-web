@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
 import InitiativeGallery from '@/app/components/InitiativeGallery';
@@ -79,13 +78,11 @@ export default async function InitiativeDetailPage({ params }: PageProps) {
         >
           {coverImage ? (
             <div className="absolute inset-0 w-full h-full overflow-hidden">
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={coverImage}
                 alt={displayName}
-                fill
-                priority
-                className="object-cover"
-                sizes="100vw"
+                className="w-full h-full object-cover"
                 style={{
                   animation: 'slowZoom 20s ease-out forwards',
                 }}
