@@ -1,8 +1,7 @@
-import fs from 'fs';
-import path from 'path';
 import Link from 'next/link';
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
+import { db } from '@/lib/db';
 
 export const metadata = {
   title: 'Recent Initiatives | Ramakirti Foundation – NGO Gurgaon',
@@ -16,65 +15,18 @@ export const metadata = {
   },
 };
 
-function getInitiatives() {
-  const initiativesDir = path.join(process.cwd(), 'public', 'img', 'Initiatives');
-  const result: { name: string; slug: string; coverImage: string | null; galleryCount: number }[] = [];
-
-  try {
-    if (!fs.existsSync(initiativesDir)) return result;
-    const items = fs.readdirSync(initiativesDir).sort();
-
-    for (const item of items) {
-      const itemPath = path.join(initiativesDir, item);
-      if (!fs.statSync(itemPath).isDirectory()) continue;
-
-      const directFiles = fs.readdirSync(itemPath).filter(
-        (f) =>
-          f.match(/\.(jpg|jpeg|png|webp|gif)$/i) &&
-          !fs.statSync(path.join(itemPath, f)).isDirectory()
-      );
-
-      const galleryPath = path.join(itemPath, 'Gallery');
-      let galleryCount = 0;
-      if (fs.existsSync(galleryPath)) {
-        galleryCount = fs
-          .readdirSync(galleryPath)
-          .filter((f) => f.match(/\.(jpg|jpeg|png|webp|gif)$/i)).length;
-      }
-
-      const coverImage =
-        directFiles.length > 0
-          ? `/img/Initiatives/${encodeURIComponent(item)}/${encodeURIComponent(directFiles[0])}`
-          : null;
-
-      const cleanSlug = item.toLowerCase().replace(/\s+/g, '-');
-      result.push({ name: item, slug: cleanSlug, coverImage, galleryCount });
-    }
-  } catch (e) {
-    console.error('Error reading initiatives:', e);
-  }
-  return result;
-}
-
-import { db } from '@/lib/db';
-
 export default async function RecentInitiativesPage() {
-  const fileInitiatives = getInitiatives();
-  
-  const dbInitiatives = await db.initiative.findMany({
+  const allInitiativesDB = await db.initiative.findMany({
     orderBy: { created_at: 'desc' }
   });
 
-  const allInitiatives = [
-    ...dbInitiatives.map(i => ({
-      name: i.title,
-      slug: `custom-${i.id}`,
-      coverImage: i.image_url,
-      galleryCount: 0,
-      description: i.description
-    })),
-    ...fileInitiatives
-  ];
+  const allInitiatives = allInitiativesDB.map(i => ({
+    name: i.title,
+    slug: i.id, // We use the ID as the slug directly
+    coverImage: i.image_url,
+    galleryCount: i.gallery_urls.length,
+    description: i.description
+  }));
 
   return (
     <>
@@ -183,8 +135,8 @@ export default async function RecentInitiativesPage() {
                       >
                         {initiative.name}
                       </h2>
-                      {(initiative as any).description && (
-                        <p className="text-sm text-gray-600 mb-3 line-clamp-2">{(initiative as any).description}</p>
+                      {initiative.description && (
+                        <p className="text-sm text-gray-600 mb-3 line-clamp-2">{initiative.description}</p>
                       )}
                       <span
                         className="inline-flex items-center gap-1 font-bold text-xs uppercase tracking-[.08em]"

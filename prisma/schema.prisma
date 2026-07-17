@@ -54,11 +54,12 @@ model ContactMessage {
 }
 
 model Initiative {
-  id          String   @id @default(uuid())
-  title       String
-  description String
-  image_url   String
-  created_at  DateTime @default(now())
+  id           String   @id @default(uuid())
+  title        String
+  description  String
+  image_url    String
+  gallery_urls String[] @default([])
+  created_at   DateTime @default(now())
 
   @@map("initiatives")
 }
