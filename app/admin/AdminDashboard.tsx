@@ -5,7 +5,7 @@ import { logoutAction, makeTestimonialAction, removeTestimonialAction, createIni
 import { useRouter } from 'next/navigation';
 
 export default function AdminDashboard({ messages, initiatives }: { messages: any[], initiatives: any[] }) {
-  const [activeTab, setActiveTab] = useState<'messages' | 'initiatives'>('messages');
+  const [activeTab, setActiveTab] = useState<'messages' | 'testimonials' | 'initiatives'>('messages');
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const router = useRouter();
 
@@ -25,7 +25,13 @@ export default function AdminDashboard({ messages, initiatives }: { messages: an
             onClick={() => setActiveTab('messages')}
             className={`px-6 py-3 rounded-lg font-bold transition-colors ${activeTab === 'messages' ? 'bg-[#6E1110] text-white shadow-md' : 'bg-white text-gray-600 border hover:bg-gray-50'}`}
           >
-            Messages & Testimonials
+            Contact Messages
+          </button>
+          <button
+            onClick={() => setActiveTab('testimonials')}
+            className={`px-6 py-3 rounded-lg font-bold transition-colors ${activeTab === 'testimonials' ? 'bg-[#6E1110] text-white shadow-md' : 'bg-white text-gray-600 border hover:bg-gray-50'}`}
+          >
+            Testimonials
           </button>
           <button
             onClick={() => setActiveTab('initiatives')}
@@ -38,8 +44,8 @@ export default function AdminDashboard({ messages, initiatives }: { messages: an
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
           {activeTab === 'messages' && (
             <div className="p-6">
-              <h2 className="text-2xl font-bold mb-6">Contact Messages</h2>
-              {messages.length === 0 ? <p className="text-gray-500">No messages yet.</p> : (
+              <h2 className="text-2xl font-bold mb-6">Contact Form Submissions</h2>
+              {messages.filter(m => m.email !== 'testimonial@ramakirtifoundation.co.in').length === 0 ? <p className="text-gray-500">No contact messages yet.</p> : (
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-sm border-collapse">
                     <thead>
@@ -50,7 +56,7 @@ export default function AdminDashboard({ messages, initiatives }: { messages: an
                       </tr>
                     </thead>
                     <tbody>
-                      {messages.map(msg => (
+                      {messages.filter(m => m.email !== 'testimonial@ramakirtifoundation.co.in').map(msg => (
                         <tr key={msg.id} className="border-b last:border-0 hover:bg-gray-50 transition-colors">
                           <td className="p-4 align-top">
                             <div className="font-bold text-gray-800">{msg.name}</div>
@@ -72,7 +78,56 @@ export default function AdminDashboard({ messages, initiatives }: { messages: an
                                 onClick={() => handleToggleTestimonial(msg.id, msg.is_testimonial)}
                                 className="bg-gray-100 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-lg font-semibold text-xs transition-colors whitespace-nowrap"
                               >
-                                + Add to Website as Testimonial
+                                + Convert to Testimonial
+                              </button>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          )}
+
+          {activeTab === 'testimonials' && (
+            <div className="p-6">
+              <h2 className="text-2xl font-bold mb-6">Manage Testimonials</h2>
+              {messages.filter(m => m.is_testimonial || m.email === 'testimonial@ramakirtifoundation.co.in').length === 0 ? <p className="text-gray-500">No testimonials to manage.</p> : (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm border-collapse">
+                    <thead>
+                      <tr className="bg-gray-50 border-b">
+                        <th className="p-4 font-semibold text-gray-600">Author / Role</th>
+                        <th className="p-4 font-semibold text-gray-600 w-1/2">Quote</th>
+                        <th className="p-4 font-semibold text-gray-600 text-right">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {messages.filter(m => m.is_testimonial || m.email === 'testimonial@ramakirtifoundation.co.in').map(msg => (
+                        <tr key={msg.id} className="border-b last:border-0 hover:bg-gray-50 transition-colors">
+                          <td className="p-4 align-top">
+                            <div className="font-bold text-gray-800">{msg.name}</div>
+                            <div className="text-xs text-gray-500">{msg.subject || 'Well Wisher'}</div>
+                          </td>
+                          <td className="p-4 align-top">
+                            <p className="text-gray-700 italic">"{msg.message}"</p>
+                          </td>
+                          <td className="p-4 align-top text-right">
+                            {msg.is_testimonial ? (
+                              <button 
+                                onClick={() => handleToggleTestimonial(msg.id, true)}
+                                className="bg-green-100 text-green-700 hover:bg-green-200 px-4 py-2 rounded-lg font-semibold text-xs transition-colors whitespace-nowrap"
+                              >
+                                ✓ Published (Click to Hide)
+                              </button>
+                            ) : (
+                              <button 
+                                onClick={() => handleToggleTestimonial(msg.id, false)}
+                                className="bg-yellow-100 text-yellow-700 hover:bg-yellow-200 px-4 py-2 rounded-lg font-semibold text-xs transition-colors whitespace-nowrap"
+                              >
+                                ⏳ Pending (Click to Publish)
                               </button>
                             )}
                           </td>

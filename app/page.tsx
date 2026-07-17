@@ -4,6 +4,8 @@ import Link from 'next/link';
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
 import { AnimatedCounter } from '@/app/components/AnimatedCounter';
+import TestimonialCarousel from '@/app/components/TestimonialCarousel';
+import TestimonialForm from '@/app/components/TestimonialForm';
 
 export const metadata: Metadata = {
   title: 'Ramakirti Foundation | Best NGO in Gurgaon',
@@ -24,35 +26,13 @@ export default async function HomePage() {
     orderBy: { created_at: 'desc' },
   });
 
-  const allTestimonials = dynamicTestimonials.length > 0 ? dynamicTestimonials.map(msg => ({
+  const allTestimonials = dynamicTestimonials.map(msg => ({
     stars: 5,
     quote: msg.message,
     name: msg.name,
-    role: 'Well Wisher',
+    role: msg.subject || 'Well Wisher',
     initials: msg.name.substring(0, 2).toUpperCase()
-  })) : [
-  {
-    stars: 5,
-    quote: '"My daughter used to sell vegetables by the road. After 8 months at Ramakirti Foundation\'s education centre, she can read, write, and dream of becoming a nurse."',
-    name: 'Puja Devi',
-    role: 'Parent, Sector 57',
-    initials: 'PD',
-  },
-  {
-    stars: 5,
-    quote: '"I volunteered for a food distribution event and was moved by the gratitude of the families. The foundation is incredibly transparent — I trust them completely."',
-    name: 'Amit Kapoor',
-    role: 'Corporate Donor, Cyber City',
-    initials: 'AK',
-  },
-  {
-    stars: 5,
-    quote: '"The tailoring programme changed my life. I now earn ₹9,000 a month from home and support my children\'s education."',
-    name: 'Sunita Maurya',
-    role: 'Women Empowerment Graduate',
-    initials: 'SM',
-  }
-  ];
+  }));
   return (
     <>
       <Navigation transparent />
@@ -203,31 +183,11 @@ export default async function HomePage() {
               <p className="text-gray-500 max-w-[620px] mx-auto text-[18px]">Stories from the volunteers, donors, and families who make our work possible.</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {allTestimonials.map(({ stars, quote, name, role, initials }) => (
-                <div
-                  key={name}
-                  className="testimonial-card p-8 rounded-[24px] bg-gradient-to-br from-white to-[#fdf4f4] border border-[#6E1110]/10 relative"
-                >
-                  <div className="text-[100px] font-serif text-[#6E1110] opacity-[0.08] absolute top-[-24px] left-4 leading-none pointer-events-none">
-                    &ldquo;
-                  </div>
-                  <div className="flex gap-1 mb-5 text-[20px]">{'⭐'.repeat(stars)}</div>
-                  <blockquote className="text-[16.5px] text-gray-800 leading-[1.8] italic mb-6 relative z-10">{quote}</blockquote>
-                  <div className="flex items-center gap-4">
-                    <div className="w-[48px] h-[48px] rounded-full bg-gradient-to-br from-[#6E1110] to-[#8B2520] flex items-center justify-center text-white font-[family-name:var(--font-plus-jakarta)] font-extrabold text-[18px] flex-shrink-0">
-                      {initials}
-                    </div>
-                    <div>
-                      <div className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[15px] text-[#6E1110] mb-0.5">{name}</div>
-                      <div className="text-[13px] text-gray-500 font-medium">
-                        {role} <span className="ml-1 inline-flex items-center bg-[#F9FAFB] text-[#6E1110] px-2 py-0.5 rounded-full text-[10px] font-bold shadow-sm">✓ Verified</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
+            <div className="-mx-5 px-5">
+              <TestimonialCarousel testimonials={allTestimonials} />
             </div>
+
+            <TestimonialForm />
           </div>
         </section>
 
