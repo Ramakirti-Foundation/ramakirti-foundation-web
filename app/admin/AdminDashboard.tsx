@@ -339,13 +339,13 @@ export default function AdminDashboard({ messages, initiatives }: { messages: an
                       );
                       setReplyModal(prev => ({ ...prev, status: 'success' }));
                       setTimeout(() => setReplyModal(prev => ({ ...prev, isOpen: false, status: 'idle' })), 2000);
-                    } catch (e) {
-                      setReplyModal(prev => ({ ...prev, status: 'error' }));
+                    } catch (e: any) {
+                      setReplyModal(prev => ({ ...prev, status: 'error', errorMsg: e.message || 'Failed to send email. Check configuration.' }));
                     }
                   }}>
                     {replyModal.status === 'error' && (
                       <div className="bg-red-50 text-red-600 p-3 rounded text-sm mb-4 font-semibold">
-                        Failed to send email. Check configuration.
+                        {(replyModal as any).errorMsg || 'Failed to send email.'}
                       </div>
                     )}
                     <div className="mb-4">

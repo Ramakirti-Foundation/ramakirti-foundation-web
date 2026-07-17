@@ -87,6 +87,10 @@ export async function sendReplyAction(email: string, subject: string, message: s
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
     throw new Error('Email configuration is missing on the server.');
   }
+  
+  if (process.env.EMAIL_PASSWORD.includes('xxxx')) {
+    throw new Error('Please configure a real Gmail App Password in your Vercel Environment Variables. The current one is just a placeholder ("xxxx").');
+  }
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
