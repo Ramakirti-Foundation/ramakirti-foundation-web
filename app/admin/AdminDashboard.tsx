@@ -1,12 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { logoutAction, makeTestimonialAction, removeTestimonialAction, createInitiativeAction, deleteInitiativeAction } from './actions';
+import { logoutAction, makeTestimonialAction, removeTestimonialAction, createInitiativeAction, deleteInitiativeAction, sendReplyAction } from './actions';
 import { useRouter } from 'next/navigation';
 
 export default function AdminDashboard({ messages, initiatives }: { messages: any[], initiatives: any[] }) {
   const [activeTab, setActiveTab] = useState<'messages' | 'testimonials' | 'initiatives'>('messages');
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [replyModal, setReplyModal] = useState<{ isOpen: boolean, email: string, name: string, subject: string, status: 'idle' | 'sending' | 'success' | 'error' }>({
+    isOpen: false, email: '', name: '', subject: '', status: 'idle'
+  });
   const router = useRouter();
 
   async function handleToggleTestimonial(id: string, currentStatus: boolean) {
@@ -68,12 +71,18 @@ export default function AdminDashboard({ messages, initiatives }: { messages: an
                           </td>
                           <td className="p-4 align-top text-right space-y-2">
                             <div>
-                              <a 
-                                href={`mailto:${msg.email}?subject=Re: Your message to Ramakirti Foundation`}
+                              <button 
+                                onClick={() => setReplyModal({
+                                  isOpen: true,
+                                  email: msg.email,
+                                  name: msg.name,
+                                  subject: `Re: Your message to Ramakirti Foundation`,
+                                  status: 'idle'
+                                })}
                                 className="inline-block bg-blue-100 text-blue-700 hover:bg-blue-200 px-4 py-2 rounded-lg font-semibold text-xs transition-colors whitespace-nowrap w-full text-center"
                               >
-                                ✉️ Reply to User
-                              </a>
+                                ✉️ Reply In-App
+                              </button>
                             </div>
                             <div>
                               {msg.is_testimonial ? (
@@ -131,12 +140,18 @@ export default function AdminDashboard({ messages, initiatives }: { messages: an
                           <td className="p-4 align-top text-right space-y-2">
                             {msg.email && msg.email !== 'testimonial@ramakirtifoundation.co.in' && (
                               <div>
-                                <a 
-                                  href={`mailto:${msg.email}?subject=Re: Your testimonial for Ramakirti Foundation`}
+                                <button 
+                                  onClick={() => setReplyModal({
+                                    isOpen: true,
+                                    email: msg.email,
+                                    name: msg.name,
+                                    subject: `Re: Your testimonial for Ramakirti Foundation`,
+                                    status: 'idle'
+                                  })}
                                   className="inline-block bg-blue-100 text-blue-700 hover:bg-blue-200 px-4 py-2 rounded-lg font-semibold text-xs transition-colors whitespace-nowrap w-full text-center"
                                 >
-                                  ✉️ Reply to User
-                                </a>
+                                  ✉️ Reply In-App
+                                </button>
                               </div>
                             )}
                             <div>
@@ -265,6 +280,92 @@ export default function AdminDashboard({ messages, initiatives }: { messages: an
             </div>
           )}
         </div>
+
+        {/* Reply Modal */}
+        {replyModal.isOpen && (
+          <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-xl shadow-xl w-full max-w-lg overflow-hidden">
+              <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+                <h3 className="font-bold text-lg text-gray-800">Reply to {replyModal.name}</h3>
+                <button 
+                  onClick={() => setReplyModal({ ...replyModal, isOpen: false, status: 'idle' })}
+                  className="text-gray-400 hover:text-gray-600 font-bold p-1"
+                >
+                  ✕
+                </button>
+              </div>
+              <div className="p-5">
+                <p className="text-sm text-gray-500 mb-4">
+                  Sending as: <span className="font-semibold text-gray-700">Ramakirti Foundation Official</span><br/>
+                  To: <span className="font-semibold text-gray-700">{replyModal.email}</span>
+                </p>
+
+                {replyModal.status === 'success' ? (
+                  <div className="bg-green-50 text-green-700 p-4 rounded-lg text-center font-bold mb-4">
+                    ✓ Reply sent successfully!
+                  </div>
+                ) : (
+                  <form action={async (formData) => {
+                    setReplyModal(prev => ({ ...prev, status: 'sending' }));
+                    try {
+                      await sendReplyAction(
+                        replyModal.email,
+                        formData.get('subject') as string,
+                        formData.get('message') as string
+                      );
+                      setReplyModal(prev => ({ ...prev, status: 'success' }));
+                      setTimeout(() => setReplyModal(prev => ({ ...prev, isOpen: false, status: 'idle' })), 2000);
+                    } catch (e) {
+                      setReplyModal(prev => ({ ...prev, status: 'error' }));
+                    }
+                  }}>
+                    {replyModal.status === 'error' && (
+                      <div className="bg-red-50 text-red-600 p-3 rounded text-sm mb-4 font-semibold">
+                        Failed to send email. Check configuration.
+                      </div>
+                    )}
+                    <div className="mb-4">
+                      <label className="block text-xs font-bold text-gray-700 uppercase mb-1">Subject</label>
+                      <input 
+                        type="text" 
+                        name="subject" 
+                        defaultValue={replyModal.subject}
+                        required 
+                        className="w-full border rounded-lg p-2.5 outline-none focus:border-[#6E1110] focus:ring-1 focus:ring-[#6E1110] text-sm font-semibold text-gray-800" 
+                      />
+                    </div>
+                    <div className="mb-5">
+                      <label className="block text-xs font-bold text-gray-700 uppercase mb-1">Message</label>
+                      <textarea 
+                        name="message" 
+                        required 
+                        rows={6}
+                        defaultValue={`\n\nBest regards,\nRamakirti Foundation`}
+                        className="w-full border rounded-lg p-3 outline-none focus:border-[#6E1110] focus:ring-1 focus:ring-[#6E1110] text-sm"
+                      ></textarea>
+                    </div>
+                    <div className="flex justify-end gap-3">
+                      <button 
+                        type="button"
+                        onClick={() => setReplyModal({ ...replyModal, isOpen: false, status: 'idle' })}
+                        className="px-5 py-2.5 rounded-lg font-bold text-gray-600 hover:bg-gray-100 transition-colors"
+                      >
+                        Cancel
+                      </button>
+                      <button 
+                        type="submit" 
+                        disabled={replyModal.status === 'sending'}
+                        className="bg-[#6E1110] text-white font-bold py-2.5 px-6 rounded-lg hover:bg-[#8B2520] transition-colors disabled:opacity-70 flex items-center gap-2"
+                      >
+                        {replyModal.status === 'sending' ? 'Sending...' : 'Send Reply 🚀'}
+                      </button>
+                    </div>
+                  </form>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
   );
 }

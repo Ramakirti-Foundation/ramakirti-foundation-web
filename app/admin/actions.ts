@@ -80,3 +80,39 @@ export async function deleteInitiativeAction(id: string) {
   revalidatePath('/recent-initiatives');
   revalidatePath('/admin');
 }
+
+import nodemailer from 'nodemailer';
+
+export async function sendReplyAction(email: string, subject: string, message: string) {
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+    throw new Error('Email configuration is missing on the server.');
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  });
+
+  const mailOptions = {
+    from: `Ramakirti Foundation <${process.env.EMAIL_USER}>`,
+    to: email,
+    subject: subject,
+    html: `
+      <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+        <h2 style="color: #6E1110;">Ramakirti Foundation</h2>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+        <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;" />
+        <p style="font-size: 12px; color: #888;">
+          Ramakirti Foundation<br>
+          Gurgaon, Haryana<br>
+          <a href="https://ramakirtifoundation.co.in">ramakirtifoundation.co.in</a>
+        </p>
+      </div>
+    `
+  };
+
+  await transporter.sendMail(mailOptions);
+}
