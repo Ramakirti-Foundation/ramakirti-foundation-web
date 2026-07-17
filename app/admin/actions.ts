@@ -120,3 +120,41 @@ export async function sendReplyAction(email: string, subject: string, message: s
 
   await transporter.sendMail(mailOptions);
 }
+
+export async function createRequirementAction(formData: FormData) {
+  const itemName = formData.get('itemName') as string;
+  const targetQuantity = parseInt(formData.get('targetQuantity') as string, 10);
+  
+  await db.requirement.create({
+    data: {
+      itemName,
+      targetQuantity,
+      fulfilledQuantity: 0
+    }
+  });
+  revalidatePath('/requirements');
+  revalidatePath('/admin');
+}
+
+export async function updateRequirementAction(id: string, fulfilledQuantity: number) {
+  await db.requirement.update({
+    where: { id },
+    data: { fulfilledQuantity }
+  });
+  revalidatePath('/requirements');
+  revalidatePath('/admin');
+}
+
+export async function deleteRequirementAction(id: string) {
+  await db.requirement.delete({ where: { id } });
+  revalidatePath('/requirements');
+  revalidatePath('/admin');
+}
+
+export async function updateVolunteerStatusAction(id: string, status: string) {
+  await db.volunteer.update({
+    where: { id },
+    data: { status }
+  });
+  revalidatePath('/admin');
+}

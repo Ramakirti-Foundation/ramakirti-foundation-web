@@ -50,7 +50,13 @@ const NEEDS = [
   }
 ];
 
-export default function RequirementsPage() {
+import { db } from '@/lib/db';
+
+export default async function RequirementsPage() {
+  const requirements = await db.requirement.findMany({
+    orderBy: { created_at: 'desc' }
+  });
+
   return (
     <>
       <Navigation />
@@ -91,22 +97,40 @@ export default function RequirementsPage() {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {NEEDS.map((group, idx) => (
-                <div key={idx} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                  <h3 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[22px] text-[#6E1110] mb-5 border-b border-gray-100 pb-3">
-                    {group.category}
-                  </h3>
-                  <ul className="space-y-3">
-                    {group.items.map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 text-gray-700">
-                        <span className="text-[#C9A84C] mt-1">✓</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {requirements.map((req) => {
+                const percentage = Math.min(100, Math.round((req.fulfilledQuantity / req.targetQuantity) * 100));
+                
+                return (
+                  <div key={req.id} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <h3 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-gray-800 mb-4 h-[54px] line-clamp-2">
+                      {req.itemName}
+                    </h3>
+                    
+                    <div className="mb-2 flex justify-between text-sm font-semibold">
+                      <span className="text-[#C9A84C]">{req.fulfilledQuantity} fulfilled</span>
+                      <span className="text-gray-500">Goal: {req.targetQuantity}</span>
+                    </div>
+                    
+                    <div className="w-full bg-gray-200 rounded-full h-3 mb-4 overflow-hidden">
+                      <div 
+                        className="bg-[#6E1110] h-3 rounded-full transition-all duration-1000 ease-out" 
+                        style={{ width: `${percentage}%` }}
+                      ></div>
+                    </div>
+                    
+                    <div className="text-right text-xs font-bold text-gray-400">
+                      {percentage}% Completed
+                    </div>
+                  </div>
+                );
+              })}
+              
+              {requirements.length === 0 && (
+                <div className="col-span-full text-center py-12 text-gray-500">
+                  No urgent requirements posted at the moment. Check back soon!
                 </div>
-              ))}
+              )}
             </div>
 
             <div className="mt-16 bg-white p-10 rounded-2xl border-2 border-[#6E1110]/10 text-center shadow-md max-w-3xl mx-auto">
