@@ -47,7 +47,8 @@ function getInitiatives() {
           ? `/img/Initiatives/${encodeURIComponent(item)}/${encodeURIComponent(directFiles[0])}`
           : null;
 
-      result.push({ name: item, slug: item, coverImage, galleryCount });
+      const cleanSlug = item.toLowerCase().replace(/\s+/g, '-');
+      result.push({ name: item, slug: cleanSlug, coverImage, galleryCount });
     }
   } catch (e) {
     console.error('Error reading initiatives:', e);

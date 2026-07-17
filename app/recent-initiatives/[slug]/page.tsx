@@ -79,15 +79,14 @@ export async function generateStaticParams() {
     return fs
       .readdirSync(initiativesDir)
       .filter((item) => fs.statSync(path.join(initiativesDir, item)).isDirectory())
-      .map((item) => ({ slug: item }));
+      .map((item) => ({ slug: item.toLowerCase().replace(/\s+/g, '-') }));
   } catch { return []; }
 }
 
 export async function generateMetadata({ params }: PageProps) {
   const slug = params.slug;
-  const name = slug;
-  let displayName = name;
-  let description = getDescription(name).slice(0, 120);
+  let displayName = '';
+  let description = '';
 
   if (slug.startsWith('custom-')) {
     const id = slug.replace('custom-', '');
@@ -96,6 +95,16 @@ export async function generateMetadata({ params }: PageProps) {
     if (initiative) {
       displayName = initiative.title;
       description = initiative.description.slice(0, 120);
+    }
+  } else {
+    const initiativesDir = path.join(process.cwd(), 'public', 'img', 'Initiatives');
+    if (fs.existsSync(initiativesDir)) {
+      const items = fs.readdirSync(initiativesDir);
+      const matchedItem = items.find(item => item.toLowerCase().replace(/\s+/g, '-') === slug);
+      if (matchedItem) {
+        displayName = matchedItem;
+        description = getDescription(matchedItem).slice(0, 120);
+      }
     }
   }
 
@@ -114,13 +123,12 @@ import { db } from '@/lib/db';
 
 export default async function InitiativeDetailPage({ params }: PageProps) {
   const slug = params.slug;
-  const name = slug;
   
   let coverImage = null;
   let galleryImages: string[] = [];
   let description = '';
   let collaborator = null;
-  let displayName = name;
+  let displayName = '';
 
   if (slug.startsWith('custom-')) {
     const id = slug.replace('custom-', '');
@@ -132,8 +140,14 @@ export default async function InitiativeDetailPage({ params }: PageProps) {
     description = initiative.description;
   } else {
     const initiativesDir = path.join(process.cwd(), 'public', 'img', 'Initiatives');
+    if (!fs.existsSync(initiativesDir)) notFound();
+    const items = fs.readdirSync(initiativesDir);
+    const matchedItem = items.find(item => item.toLowerCase().replace(/\s+/g, '-') === slug);
+    if (!matchedItem) notFound();
+    
+    const name = matchedItem;
+    displayName = name;
     const itemPath = path.join(initiativesDir, name);
-    if (!fs.existsSync(itemPath)) notFound();
 
     const directFiles = fs
       .readdirSync(itemPath)
@@ -144,7 +158,7 @@ export default async function InitiativeDetailPage({ params }: PageProps) {
       );
     coverImage =
       directFiles.length > 0
-        ? `/img/Initiatives/${encodeURIComponent(slug)}/${encodeURIComponent(directFiles[0])}`
+        ? `/img/Initiatives/${slug}/${encodeURIComponent(directFiles[0])}`
         : null;
 
     const galleryPath = path.join(itemPath, 'Gallery');
@@ -152,12 +166,12 @@ export default async function InitiativeDetailPage({ params }: PageProps) {
       fs.readdirSync(galleryPath)
         .filter((f) => f.match(/\.(jpg|jpeg|png|webp|gif)$/i))
         .forEach((f) =>
-          galleryImages.push(`/img/Initiatives/${encodeURIComponent(slug)}/Gallery/${encodeURIComponent(f)}`)
+          galleryImages.push(`/img/Initiatives/${slug}/Gallery/${encodeURIComponent(f)}`)
         );
     }
     
-    description = getDescription(name);
-    collaborator = getCollaborator(name);
+    description = getDescription(displayName);
+    collaborator = getCollaborator(displayName);
   }
   return (
     <>
