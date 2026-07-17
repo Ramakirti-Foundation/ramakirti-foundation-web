@@ -45,7 +45,7 @@ export default function AdminDashboard({ messages, initiatives }: { messages: an
           {activeTab === 'messages' && (
             <div className="p-6">
               <h2 className="text-2xl font-bold mb-6">Contact Form Submissions</h2>
-              {messages.filter(m => m.email !== 'testimonial@ramakirtifoundation.co.in').length === 0 ? <p className="text-gray-500">No contact messages yet.</p> : (
+              {messages.filter(m => !m.is_testimonial && !(m.subject || '').startsWith('[Testimonial Submission]') && m.email !== 'testimonial@ramakirtifoundation.co.in').length === 0 ? <p className="text-gray-500">No contact messages yet.</p> : (
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-sm border-collapse">
                     <thead>
@@ -56,7 +56,7 @@ export default function AdminDashboard({ messages, initiatives }: { messages: an
                       </tr>
                     </thead>
                     <tbody>
-                      {messages.filter(m => m.email !== 'testimonial@ramakirtifoundation.co.in').map(msg => (
+                      {messages.filter(m => !m.is_testimonial && !(m.subject || '').startsWith('[Testimonial Submission]') && m.email !== 'testimonial@ramakirtifoundation.co.in').map(msg => (
                         <tr key={msg.id} className="border-b last:border-0 hover:bg-gray-50 transition-colors">
                           <td className="p-4 align-top">
                             <div className="font-bold text-gray-800">{msg.name}</div>
@@ -94,7 +94,7 @@ export default function AdminDashboard({ messages, initiatives }: { messages: an
           {activeTab === 'testimonials' && (
             <div className="p-6">
               <h2 className="text-2xl font-bold mb-6">Manage Testimonials</h2>
-              {messages.filter(m => m.is_testimonial || m.email === 'testimonial@ramakirtifoundation.co.in').length === 0 ? <p className="text-gray-500">No testimonials to manage.</p> : (
+              {messages.filter(m => m.is_testimonial || (m.subject || '').startsWith('[Testimonial Submission]') || m.email === 'testimonial@ramakirtifoundation.co.in').length === 0 ? <p className="text-gray-500">No testimonials to manage.</p> : (
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-sm border-collapse">
                     <thead>
@@ -105,11 +105,11 @@ export default function AdminDashboard({ messages, initiatives }: { messages: an
                       </tr>
                     </thead>
                     <tbody>
-                      {messages.filter(m => m.is_testimonial || m.email === 'testimonial@ramakirtifoundation.co.in').map(msg => (
+                      {messages.filter(m => m.is_testimonial || (m.subject || '').startsWith('[Testimonial Submission]') || m.email === 'testimonial@ramakirtifoundation.co.in').map(msg => (
                         <tr key={msg.id} className="border-b last:border-0 hover:bg-gray-50 transition-colors">
                           <td className="p-4 align-top">
                             <div className="font-bold text-gray-800">{msg.name}</div>
-                            <div className="text-xs text-gray-500">{msg.subject || 'Well Wisher'}</div>
+                            <div className="text-xs text-gray-500">{msg.subject?.replace('[Testimonial Submission] ', '') || 'Well Wisher'}</div>
                           </td>
                           <td className="p-4 align-top">
                             <p className="text-gray-700 italic">"{msg.message}"</p>

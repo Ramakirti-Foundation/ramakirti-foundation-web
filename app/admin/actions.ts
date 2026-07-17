@@ -19,11 +19,15 @@ export async function logoutAction() {
   redirect('/admin/login');
 }
 
+import { revalidatePath } from 'next/cache';
+
 export async function makeTestimonialAction(id: string) {
   await db.contactMessage.update({
     where: { id },
     data: { is_testimonial: true }
   });
+  revalidatePath('/');
+  revalidatePath('/admin');
 }
 
 export async function removeTestimonialAction(id: string) {
@@ -31,6 +35,8 @@ export async function removeTestimonialAction(id: string) {
     where: { id },
     data: { is_testimonial: false }
   });
+  revalidatePath('/');
+  revalidatePath('/admin');
 }
 
 export async function createInitiativeAction(formData: FormData) {
@@ -63,10 +69,14 @@ export async function createInitiativeAction(formData: FormData) {
       gallery_urls
     }
   });
+  revalidatePath('/recent-initiatives');
+  revalidatePath('/admin');
 }
 
 export async function deleteInitiativeAction(id: string) {
   await db.initiative.delete({
     where: { id }
   });
+  revalidatePath('/recent-initiatives');
+  revalidatePath('/admin');
 }

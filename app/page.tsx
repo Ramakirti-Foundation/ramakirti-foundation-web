@@ -29,7 +29,7 @@ export default async function HomePage() {
     stars: 5,
     quote: msg.message,
     name: msg.name,
-    role: msg.subject || 'Well Wisher',
+    role: msg.subject?.replace('[Testimonial Submission] ', '') || 'Well Wisher',
     initials: msg.name.substring(0, 2).toUpperCase()
   }));
   return (

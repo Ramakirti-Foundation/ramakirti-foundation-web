@@ -5,6 +5,7 @@ import { submitTestimonialAction } from '@/app/actions/submitTestimonial';
 
 export default function TestimonialForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
@@ -21,28 +22,34 @@ export default function TestimonialForm() {
         <form 
           action={async (formData) => {
             setStatus('loading');
+            setErrorMsg(null);
             try {
               await submitTestimonialAction(formData);
               setStatus('success');
-            } catch (e) {
+            } catch (e: any) {
               setStatus('error');
+              setErrorMsg(e.message || 'Failed to submit. Please try again.');
             }
           }}
           className="space-y-4"
         >
           {status === 'error' && (
-            <div className="bg-red-50 text-red-600 p-3 rounded text-sm text-center">
-              Failed to submit. Please try again.
+            <div className="bg-red-50 text-red-600 p-3 rounded text-sm text-center font-semibold">
+              {errorMsg}
             </div>
           )}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label className="block text-xs font-bold text-gray-700 uppercase mb-1">Your Name</label>
               <input type="text" name="name" required className="w-full border rounded-lg p-3 outline-none focus:border-[#6E1110] focus:ring-1 focus:ring-[#6E1110]" />
             </div>
             <div>
+              <label className="block text-xs font-bold text-gray-700 uppercase mb-1">Email</label>
+              <input type="email" name="email" required className="w-full border rounded-lg p-3 outline-none focus:border-[#6E1110] focus:ring-1 focus:ring-[#6E1110]" />
+            </div>
+            <div>
               <label className="block text-xs font-bold text-gray-700 uppercase mb-1">Role / Association</label>
-              <input type="text" name="role" required placeholder="e.g. Volunteer, Donor" className="w-full border rounded-lg p-3 outline-none focus:border-[#6E1110] focus:ring-1 focus:ring-[#6E1110]" />
+              <input type="text" name="role" required placeholder="e.g. Volunteer" className="w-full border rounded-lg p-3 outline-none focus:border-[#6E1110] focus:ring-1 focus:ring-[#6E1110]" />
             </div>
           </div>
           <div>
