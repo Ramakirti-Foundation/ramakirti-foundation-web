@@ -99,9 +99,11 @@ export default function VolunteerForm() {
           <button 
             type="submit" 
             disabled={status === 'loading'}
-            className="w-full bg-[#6E1110] text-white font-bold py-4 rounded-xl hover:bg-[#8B2520] transition-colors disabled:opacity-70 mt-4"
+            className="w-full bg-[#6E1110] text-white font-bold py-4 rounded-xl hover:bg-[#8B2520] transition-colors disabled:opacity-70 mt-4 flex items-center justify-center gap-2"
           >
-            {status === 'loading' ? 'Submitting...' : 'Submit Application'}
+            {status === 'loading' ? (
+              <><span className="inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Submitting...</>
+            ) : 'Submit Application'}
           </button>
         </form>
       )}

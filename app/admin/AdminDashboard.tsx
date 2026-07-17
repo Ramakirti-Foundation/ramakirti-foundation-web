@@ -307,8 +307,10 @@ export default function AdminDashboard({ messages, initiatives, requirements, vo
                     <label className="block text-sm font-semibold mb-2 text-gray-700">Description</label>
                     <textarea name="description" required rows={4} className="w-full border rounded-lg p-3 outline-none focus:border-[#6E1110] focus:ring-1 focus:ring-[#6E1110]"></textarea>
                   </div>
-                  <button type="submit" disabled={isPublishing} className="bg-[#6E1110] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#8B2520] transition-colors w-full disabled:opacity-70">
-                    {isPublishing ? 'Publishing Initiative...' : 'Publish Initiative'}
+                  <button type="submit" disabled={isPublishing} className="bg-[#6E1110] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#8B2520] transition-colors w-full disabled:opacity-70 flex items-center justify-center gap-2">
+                    {isPublishing ? (
+                      <><span className="inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Publishing Initiative...</>
+                    ) : 'Publish Initiative'}
                   </button>
                 </form>
               </div>
@@ -372,8 +374,10 @@ export default function AdminDashboard({ messages, initiatives, requirements, vo
                     <label className="block text-sm font-semibold mb-2 text-gray-700">Target Quantity</label>
                     <input type="number" name="targetQuantity" required min="1" placeholder="e.g., 500" className="w-full border rounded-lg p-3 outline-none focus:border-[#6E1110] focus:ring-1 focus:ring-[#6E1110]" />
                   </div>
-                  <button type="submit" disabled={isPublishing} className="bg-[#6E1110] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#8B2520] transition-colors w-full disabled:opacity-70">
-                    {isPublishing ? 'Adding...' : 'Add Requirement'}
+                  <button type="submit" disabled={isPublishing} className="bg-[#6E1110] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#8B2520] transition-colors w-full disabled:opacity-70 flex items-center justify-center gap-2">
+                    {isPublishing ? (
+                      <><span className="inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Adding Requirement...</>
+                    ) : 'Add Requirement'}
                   </button>
                 </form>
               </div>
