@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
 
@@ -72,18 +73,24 @@ export default function AboutPage() {
 
               {/* Images */}
               <div className="grid grid-cols-2 gap-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
-                  src="/img/Initiatives/A Day in Parsona/A Day in Pasona.webp" 
-                  alt="Ramakirti Foundation team" 
-                  className="rounded-2xl w-full h-[280px] object-cover shadow-lg border-2 border-white"
-                />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
-                  src="/img/Food For Poor.jpg" 
-                  alt="Food distribution" 
-                  className="rounded-2xl w-full h-[280px] object-cover shadow-lg border-2 border-white mt-10"
-                />
+                <div className="relative w-full h-[280px]">
+                  <Image 
+                    src="/img/Initiatives/A Day in Parsona/A Day in Pasona.webp" 
+                    alt="Ramakirti Foundation team" 
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 30vw"
+                    className="rounded-2xl object-cover shadow-lg border-2 border-white"
+                  />
+                </div>
+                <div className="relative w-full h-[280px] mt-10">
+                  <Image 
+                    src="/img/Food For Poor.jpg" 
+                    alt="Food distribution" 
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 30vw"
+                    className="rounded-2xl object-cover shadow-lg border-2 border-white"
+                  />
+                </div>
               </div>
 
             </div>
