@@ -158,3 +158,19 @@ export async function updateVolunteerStatusAction(id: string, status: string) {
   });
   revalidatePath('/admin');
 }
+
+export async function deleteMessageAction(id: string) {
+  await db.contactMessage.delete({ where: { id } });
+  revalidatePath('/admin');
+}
+
+export async function deleteTestimonialAction(id: string) {
+  await db.contactMessage.delete({ where: { id } });
+  revalidatePath('/');
+  revalidatePath('/admin');
+}
+
+export async function deleteVolunteerAction(id: string) {
+  await db.volunteer.delete({ where: { id } });
+  revalidatePath('/admin');
+}

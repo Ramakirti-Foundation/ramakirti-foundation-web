@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { logoutAction, makeTestimonialAction, removeTestimonialAction, createInitiativeAction, deleteInitiativeAction, sendReplyAction, createRequirementAction, updateRequirementAction, deleteRequirementAction, updateVolunteerStatusAction } from './actions';
+import { logoutAction, makeTestimonialAction, removeTestimonialAction, createInitiativeAction, deleteInitiativeAction, sendReplyAction, createRequirementAction, updateRequirementAction, deleteRequirementAction, updateVolunteerStatusAction, deleteMessageAction, deleteTestimonialAction, deleteVolunteerAction } from './actions';
 import { useRouter } from 'next/navigation';
 
 export default function AdminDashboard({ messages, initiatives, requirements, volunteers }: { messages: any[], initiatives: any[], requirements: any[], volunteers: any[] }) {
@@ -62,6 +62,36 @@ export default function AdminDashboard({ messages, initiatives, requirements, vo
     setLoadingId(`vol-${id}`);
     try {
       await updateVolunteerStatusAction(id, status);
+      router.refresh();
+    } finally {
+      setLoadingId(null);
+    }
+  }
+
+  async function handleDeleteMessage(id: string) {
+    setLoadingId(`del-msg-${id}`);
+    try {
+      await deleteMessageAction(id);
+      router.refresh();
+    } finally {
+      setLoadingId(null);
+    }
+  }
+
+  async function handleDeleteTestimonial(id: string) {
+    setLoadingId(`del-test-${id}`);
+    try {
+      await deleteTestimonialAction(id);
+      router.refresh();
+    } finally {
+      setLoadingId(null);
+    }
+  }
+
+  async function handleDeleteVolunteer(id: string) {
+    setLoadingId(`del-vol-${id}`);
+    try {
+      await deleteVolunteerAction(id);
       router.refresh();
     } finally {
       setLoadingId(null);
@@ -162,6 +192,15 @@ export default function AdminDashboard({ messages, initiatives, requirements, vo
                                 </button>
                               )}
                             </div>
+                            <div>
+                              <button 
+                                onClick={() => handleDeleteMessage(msg.id)}
+                                disabled={loadingId === `del-msg-${msg.id}`}
+                                className="bg-red-50 text-red-600 hover:bg-red-100 px-4 py-2 rounded-lg font-semibold text-xs transition-colors whitespace-nowrap w-full disabled:opacity-50 mt-1"
+                              >
+                                {loadingId === `del-msg-${msg.id}` ? 'Deleting...' : '🗑️ Delete Message'}
+                              </button>
+                            </div>
                           </td>
                         </tr>
                       ))}
@@ -233,6 +272,15 @@ export default function AdminDashboard({ messages, initiatives, requirements, vo
                                   {loadingId === msg.id ? 'Processing...' : '⏳ Pending (Publish)'}
                                 </button>
                               )}
+                            </div>
+                            <div>
+                              <button 
+                                onClick={() => handleDeleteTestimonial(msg.id)}
+                                disabled={loadingId === `del-test-${msg.id}`}
+                                className="bg-red-50 text-red-600 hover:bg-red-100 px-4 py-2 rounded-lg font-semibold text-xs transition-colors whitespace-nowrap w-full disabled:opacity-50 mt-1"
+                              >
+                                {loadingId === `del-test-${msg.id}` ? 'Deleting...' : '🗑️ Delete Testimonial'}
+                              </button>
                             </div>
                           </td>
                         </tr>
@@ -489,6 +537,15 @@ export default function AdminDashboard({ messages, initiatives, requirements, vo
                               >
                                 ✉️ Email Volunteer
                               </a>
+                            </div>
+                            <div>
+                              <button 
+                                onClick={() => handleDeleteVolunteer(vol.id)}
+                                disabled={loadingId === `del-vol-${vol.id}`}
+                                className="bg-red-50 text-red-600 hover:bg-red-100 px-4 py-2 rounded-lg font-semibold text-xs transition-colors whitespace-nowrap w-full disabled:opacity-50"
+                              >
+                                {loadingId === `del-vol-${vol.id}` ? 'Deleting...' : '🗑️ Delete Application'}
+                              </button>
                             </div>
                           </td>
                         </tr>
