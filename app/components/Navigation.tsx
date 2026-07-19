@@ -124,12 +124,14 @@ export default function Navigation({ transparent = false }: { transparent?: bool
                   className="no-underline text-sm transition-all duration-200 flex items-center h-full py-2"
                   style={{
                     color: pathname === link.href
-                      ? '#651A16'
+                      ? (isLight ? '#ffffff' : '#651A16')
                       : isLight
                       ? 'rgba(255,255,255,.9)'
                       : '#374151',
                     fontWeight: pathname === link.href ? '800' : '600',
-                    borderBottom: pathname === link.href ? '2px solid #651A16' : '2px solid transparent',
+                    borderBottom: pathname === link.href 
+                      ? (isLight ? '2px solid #ffffff' : '2px solid #651A16') 
+                      : '2px solid transparent',
                   }}
                 >
                   {link.label}

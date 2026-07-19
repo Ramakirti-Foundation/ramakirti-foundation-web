@@ -75,16 +75,16 @@ const config: Config = {
       },
 
       fontSize: {
-        'xs': ['12px', { lineHeight: '16px' }],
-        'sm': ['14px', { lineHeight: '20px' }],
-        'base': ['16px', { lineHeight: '28px' }],
-        'lg': ['18px', { lineHeight: '28px' }],
-        'xl': ['20px', { lineHeight: '28px' }],
-        '2xl': ['24px', { lineHeight: '32px' }],
-        '3xl': ['28px', { lineHeight: '36px' }],
-        '4xl': ['36px', { lineHeight: '44px' }],
-        '5xl': ['48px', { lineHeight: '56px' }],
-        '6xl': ['60px', { lineHeight: '72px' }],
+        'xs': ['14px', { lineHeight: '20px' }],
+        'sm': ['16px', { lineHeight: '24px' }],
+        'base': ['18px', { lineHeight: '28px' }],
+        'lg': ['20px', { lineHeight: '28px' }],
+        'xl': ['22px', { lineHeight: '30px' }],
+        '2xl': ['26px', { lineHeight: '34px' }],
+        '3xl': ['32px', { lineHeight: '40px' }],
+        '4xl': ['40px', { lineHeight: '48px' }],
+        '5xl': ['52px', { lineHeight: '60px' }],
+        '6xl': ['64px', { lineHeight: '76px' }],
       },
 
       // Spacing (8px base unit)

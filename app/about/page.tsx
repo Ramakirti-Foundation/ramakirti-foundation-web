@@ -128,7 +128,7 @@ export default function AboutPage() {
                     href="/donate"
                     className="hero-btn-primary inline-flex items-center gap-2 font-[family-name:var(--font-plus-jakarta)] font-bold text-[16px] text-white px-8 py-4 rounded-lg shadow-md no-underline"
                   >
-                    ❤️ Support Our Mission
+                    Support Our Mission
                   </Link>
               </div>
             </div>

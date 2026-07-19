@@ -157,7 +157,7 @@ export default async function InitiativeDetailPage({ params }: PageProps) {
                     className="inline-flex items-center gap-2 font-bold text-base text-white no-underline rounded-lg"
                     style={{ background: '#6E1110', padding: '14px 28px', fontFamily: 'var(--font-plus-jakarta, sans-serif)', boxShadow: '0 4px 16px rgba(110,17,16,.3)' }}
                   >
-                    ❤️ Support Our Work
+                    Support Our Work
                   </Link>
                   <Link
                     href="/recent-initiatives"

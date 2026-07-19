@@ -185,7 +185,7 @@ export default async function RecentInitiativesPage() {
                 className="inline-flex items-center gap-2 font-bold text-lg text-white no-underline rounded-lg"
                 style={{ background: '#C9A84C', padding: '18px 36px', fontFamily: 'var(--font-plus-jakarta, sans-serif)', boxShadow: '0 4px 16px rgba(201,168,76,.3)' }}
               >
-                ❤️ Donate Now
+                Donate Now
               </Link>
               <Link
                 href="/volunteer"

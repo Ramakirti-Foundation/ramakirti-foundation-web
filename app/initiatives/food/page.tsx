@@ -85,7 +85,7 @@ export default function FoodInitiativePage() {
                   href="/donate"
                   className="hero-btn-primary inline-flex items-center gap-2 font-[family-name:var(--font-plus-jakarta)] font-bold text-[16px] text-white px-8 py-4 rounded-lg shadow-md no-underline"
                 >
-                  ❤️ Donate a Meal Today
+                  Donate a Meal Today
                 </Link>
               </div>
             </div>

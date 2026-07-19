@@ -21,7 +21,7 @@ const INITIATIVES = [
   { id: 'education', label: '📚 Education', desc: '₹500 funds a child\'s materials for a month' },
   { id: 'food', label: '🍚 Food Program', desc: '₹300 provides 10 hot meals' },
   { id: 'women', label: '💪 Women Empowerment', desc: '₹1000 trains 1 woman for 2 weeks' },
-  { id: 'general', label: '❤️ General Fund', desc: 'Foundation decides best use' },
+  { id: 'general', label: 'General Fund', desc: 'Foundation decides best use' },
 ];
 
 const PRESET_AMOUNTS = [500, 1000, 2500, 5000, 10000];

@@ -61,13 +61,13 @@ export default async function HomePage() {
             <div className="flex gap-4 justify-center flex-wrap">
               <Link
                 href="/donate"
-                className="hero-btn-primary inline-flex items-center gap-2 font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-white px-9 py-[18px] rounded-lg shadow-xl no-underline"
+                className="hero-btn-primary inline-flex items-center justify-center font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-white px-9 py-[18px] rounded-2xl shadow-xl no-underline bg-[#651A16] hover:bg-[#8B2520] transition-colors"
               >
-                ❤️ Donate Now
+                Donate Now
               </Link>
               <Link
                 href="/volunteer"
-                className="hero-btn-secondary inline-flex items-center gap-2 font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-white px-9 py-[18px] rounded-lg no-underline"
+                className="hero-btn-secondary inline-flex items-center justify-center font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-white px-9 py-[18px] rounded-2xl border-2 border-white/20 bg-black/40 hover:bg-black/60 transition-colors no-underline"
               >
                 🤝 Volunteer With Us
               </Link>
@@ -92,8 +92,8 @@ export default async function HomePage() {
         </section>
 
         {/* ─── STATS STRIP ─── */}
-        <div className="bg-[#F9FAFB] py-4 border-y-2 border-[#E5C96A]/30">
-          <div className="max-w-[1280px] mx-auto px-5 flex gap-8 md:gap-12 justify-center items-center flex-wrap">
+        <div className="bg-[#F9FAFB] py-4 border-y-2 border-[#E5C96A]/30 overflow-x-auto whitespace-nowrap scrollbar-hide">
+          <div className="max-w-[1280px] mx-auto px-5 flex gap-8 md:gap-12 justify-center items-center min-w-max">
             {[
               { icon: '🗓', text: 'Founded 2021' },
               { icon: '📍', text: 'Gurgaon, Haryana' },
@@ -126,7 +126,7 @@ export default async function HomePage() {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Pillar 1: Education */}
-              <Link href="/initiatives/education" className="pillar-card group bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-sm border border-gray-100 relative overflow-hidden flex flex-col items-start text-left no-underline cursor-pointer transition-all hover:bg-white">
+              <Link href="/initiatives/education" className="pillar-card group bg-white/90 backdrop-blur-sm rounded-[24px] p-8 shadow-sm border border-gray-200 relative overflow-hidden flex flex-col items-start text-left no-underline cursor-pointer transition-all hover:bg-white">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#6E1110] to-[#C9A84C] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
                 <div className="w-[64px] h-[64px] rounded-xl flex items-center justify-center text-[28px] mb-5 bg-[#6E1110]/5 text-[#6E1110]">
                   📚
@@ -141,7 +141,7 @@ export default async function HomePage() {
               </Link>
 
               {/* Pillar 2: Food */}
-              <Link href="/initiatives/food" className="pillar-card group bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-sm border border-gray-100 relative overflow-hidden flex flex-col items-start text-left no-underline cursor-pointer transition-all hover:bg-white" style={{ transitionDelay: '100ms' }}>
+              <Link href="/initiatives/food" className="pillar-card group bg-white/90 backdrop-blur-sm rounded-[24px] p-8 shadow-sm border border-gray-200 relative overflow-hidden flex flex-col items-start text-left no-underline cursor-pointer transition-all hover:bg-white" style={{ transitionDelay: '100ms' }}>
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#6E1110] to-[#C9A84C] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
                 <div className="w-[64px] h-[64px] rounded-xl flex items-center justify-center text-[28px] mb-5 bg-[#C9A84C]/10 text-[#6E1110]">
                   🍽️
@@ -156,7 +156,7 @@ export default async function HomePage() {
               </Link>
 
               {/* Pillar 3: Women */}
-              <Link href="/initiatives/women" className="pillar-card group bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-sm border border-gray-100 relative overflow-hidden flex flex-col items-start text-left no-underline cursor-pointer transition-all hover:bg-white" style={{ transitionDelay: '200ms' }}>
+              <Link href="/initiatives/women" className="pillar-card group bg-white/90 backdrop-blur-sm rounded-[24px] p-8 shadow-sm border border-gray-200 relative overflow-hidden flex flex-col items-start text-left no-underline cursor-pointer transition-all hover:bg-white" style={{ transitionDelay: '200ms' }}>
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#6E1110] to-[#C9A84C] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
                 <div className="w-[64px] h-[64px] rounded-xl flex items-center justify-center text-[28px] mb-5 bg-[#C9A84C]/10 text-[#6E1110]">
                   💪
@@ -198,22 +198,22 @@ export default async function HomePage() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <div className="trust-card bg-white p-10 rounded-2xl border-t-[4px] border-[#6E1110] text-center shadow-sm border border-[#e5e7eb] border-t-[#6E1110]">
+              <div className="trust-card bg-white p-8 rounded-[24px] border-t-[4px] border-t-[#651A16] text-center shadow-sm border border-gray-200 flex flex-col items-center">
                 <div className="text-[48px] mb-5">🏛️</div>
                 <h3 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[20px] text-[#6E1110] mb-3">80G Tax Exempt</h3>
-                <p className="text-gray-500 text-[15px] leading-relaxed">All donations are eligible for income tax deduction under Section 80G(5)(vi). We provide digitally signed receipts instantly.</p>
+                <p className="text-gray-500 text-[15px] leading-relaxed flex-grow">All donations are eligible for income tax deduction under Section 80G(5)(vi). We provide digitally signed receipts instantly.</p>
               </div>
               
-              <div className="trust-card bg-white p-10 rounded-2xl border-t-[4px] border-[#C9A84C] text-center shadow-sm border border-[#e5e7eb] border-t-[#C9A84C]">
+              <div className="trust-card bg-white p-8 rounded-[24px] border-t-[4px] border-t-[#651A16] text-center shadow-sm border border-gray-200 flex flex-col items-center">
                 <div className="text-[48px] mb-5">🤝</div>
                 <h3 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[20px] text-[#6E1110] mb-3">On-Ground Impact</h3>
-                <p className="text-gray-500 text-[15px] leading-relaxed">We are a grassroots NGO. 100% of your contributions go directly into funding programs, not expensive overheads.</p>
+                <p className="text-gray-500 text-[15px] leading-relaxed flex-grow">We are a grassroots NGO. 100% of your contributions go directly into funding programs, not expensive overheads.</p>
               </div>
               
-              <div className="trust-card bg-white p-10 rounded-2xl border-t-[4px] border-[#C9A84C] text-center shadow-sm border border-[#e5e7eb] border-t-[#C9A84C]">
+              <div className="trust-card bg-white p-8 rounded-[24px] border-t-[4px] border-t-[#651A16] text-center shadow-sm border border-gray-200 flex flex-col items-center">
                 <div className="text-[48px] mb-5">🔒</div>
                 <h3 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[20px] text-[#6E1110] mb-3">Secure Payments</h3>
-                <p className="text-gray-500 text-[15px] leading-relaxed">Donations are processed securely with bank-grade encryption via UPI and direct bank transfers.</p>
+                <p className="text-gray-500 text-[15px] leading-relaxed flex-grow">Donations are processed securely with bank-grade encryption via UPI and direct bank transfers.</p>
               </div>
             </div>
           </div>
@@ -233,13 +233,13 @@ export default async function HomePage() {
             <div className="flex gap-4 justify-center flex-wrap">
               <Link
                 href="/donate"
-                className="hero-btn-emerald inline-flex items-center gap-2 font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-[#6E1110] px-10 py-[18px] rounded-lg shadow-xl no-underline bg-[#C9A84C]"
+                className="hero-btn-emerald inline-flex items-center justify-center font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-white px-10 py-[18px] rounded-2xl shadow-xl no-underline bg-[#651A16] hover:bg-[#8B2520] transition-colors"
               >
-                ❤️ Donate Now
+                Donate Now
               </Link>
               <Link
                 href="/volunteer"
-                className="hero-btn-secondary inline-flex items-center gap-2 font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-white px-10 py-[18px] rounded-lg no-underline"
+                className="hero-btn-secondary inline-flex items-center justify-center font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-[#6E1110] px-10 py-[18px] rounded-2xl bg-white hover:bg-gray-50 transition-colors no-underline"
               >
                 🤝 Volunteer
               </Link>
