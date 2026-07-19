@@ -52,7 +52,7 @@ export default function ContactPage() {
             <h1 className="text-[clamp(28px,4vw,44px)] font-[family-name:var(--font-plus-jakarta)] font-extrabold text-white mt-2 mb-4">
               Contact Us
             </h1>
-            <p className="text-[#C9A84C] text-[18px]">Whether you want to donate, partner, or simply know more — we&apos;re here.</p>
+            <p className="text-white text-[19px]">Whether you want to donate, partner, or simply know more — we&apos;re here.</p>
           </div>
         </section>
 
@@ -77,7 +77,7 @@ export default function ContactPage() {
                       {href ? (
                         <a href={href} className="text-[#651A16] font-semibold hover:underline no-underline">{content}</a>
                       ) : (
-                        <p className="text-gray-600 text-sm">{content}</p>
+                        <p className="text-[#651A16] font-medium text-base">{content}</p>
                       )}
                     </div>
                   </div>

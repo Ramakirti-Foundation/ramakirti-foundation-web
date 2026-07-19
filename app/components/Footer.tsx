@@ -21,15 +21,15 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-white border-t border-gray-100 text-gray-700 pt-20 pb-8" role="contentinfo">
+    <footer className="bg-black border-t border-gray-900 text-gray-300 pt-20 pb-8" role="contentinfo">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr] gap-12 mb-16">
           {/* Brand column */}
           <div>
             <Link href="/" className="flex items-center gap-4 no-underline mb-4">
-              <Image src="/img/logo.jpg" alt="Ramakirti Foundation" width={42} height={42} className="rounded-md border border-gray-200" />
+              <Image src="/img/logo.jpg" alt="Ramakirti Foundation" width={42} height={42} className="rounded-md border border-gray-800" />
               <div>
-                <div className="font-bold text-[16px] text-[#651A16]">
+                <div className="font-bold text-[16px] text-white">
                   Ramakirti Foundation
                 </div>
                 <div className="text-[11px] text-[#C9A84C] font-semibold tracking-wide">
@@ -37,8 +37,8 @@ export default function Footer() {
                 </div>
               </div>
             </Link>
-            <p className="text-gray-600 text-base leading-relaxed mt-4 max-w-xs">
-              A grassroots NGO committed to transforming lives in Gurgaon&apos;s most underserved communities through education, food security, and women&apos;s empowerment since 2021.
+            <p className="text-gray-400 text-base leading-relaxed mt-4 max-w-sm">
+              RAMAKIRTI FOUNDATION has been established as a charitable trust, backed by a dedicated team. It was established in year 2021, is one of the emerging non – profit organization in India. Our main aim is to provide a better life and education to the under privileged / destitute girls / children as we know they deserve the best of all. Education is the part and parcel of lives as well as society, life without education is simply beyond imaginations.
             </p>
             {/* Socials */}
             <div className="flex gap-3 mt-6" aria-label="Social media links">
@@ -52,7 +52,7 @@ export default function Footer() {
                 <a
                   key={label}
                   href={href}
-                  className="w-[42px] h-[42px] rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-500 hover:text-white hover:bg-[#651A16] hover:border-[#651A16] hover:-translate-y-[2px] transition-all duration-200 no-underline"
+                  className="w-[42px] h-[42px] rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-gray-300 hover:text-white hover:bg-[#651A16] hover:border-[#651A16] hover:-translate-y-[2px] transition-all duration-200 no-underline"
                   aria-label={label}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -66,7 +66,7 @@ export default function Footer() {
 
           {/* Quick links */}
           <div>
-            <h5 className="text-[#651A16] text-[14px] font-bold uppercase tracking-[.05em] mb-6">
+            <h5 className="text-white text-[14px] font-bold uppercase tracking-[.05em] mb-6">
               Quick Links
             </h5>
             <div className="flex flex-col gap-3">
@@ -74,9 +74,10 @@ export default function Footer() {
                 <Link
                   key={label}
                   href={href}
-                  className="text-base text-gray-600 hover:text-[#C9A84C] transition-colors no-underline flex items-center gap-2 font-medium"
+                  className="text-base text-gray-400 hover:text-[#C9A84C] transition-colors no-underline flex items-start gap-2 font-medium"
                 >
-                  → {label}
+                  <span className="shrink-0 mt-0.5">→</span>
+                  <span>{label}</span>
                 </Link>
               ))}
             </div>
@@ -84,7 +85,7 @@ export default function Footer() {
 
           {/* Get Involved */}
           <div>
-            <h5 className="text-[#651A16] text-[14px] font-bold uppercase tracking-[.05em] mb-6">
+            <h5 className="text-white text-[14px] font-bold uppercase tracking-[.05em] mb-6">
               Get Involved
             </h5>
             <div className="flex flex-col gap-3">
@@ -92,9 +93,10 @@ export default function Footer() {
                 <Link
                   key={label}
                   href={href}
-                  className="text-base text-gray-600 hover:text-[#C9A84C] transition-colors no-underline flex items-center gap-2 font-medium"
+                  className="text-base text-gray-400 hover:text-[#C9A84C] transition-colors no-underline flex items-start gap-2 font-medium"
                 >
-                  → {label}
+                  <span className="shrink-0 mt-0.5">→</span>
+                  <span>{label}</span>
                 </Link>
               ))}
             </div>
@@ -102,50 +104,50 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h5 className="text-[#651A16] text-[14px] font-bold uppercase tracking-[.05em] mb-6">
+            <h5 className="text-white text-[14px] font-bold uppercase tracking-[.05em] mb-6">
               Contact Us
             </h5>
             <div className="space-y-4">
-              <div className="flex items-start gap-3 text-base text-gray-700 leading-relaxed font-medium">
-                <span className="mt-1 text-[#651A16]">📍</span>
+              <div className="flex items-start gap-3 text-base text-gray-400 leading-relaxed font-medium">
+                <span className="mt-1 text-[#C9A84C]">📍</span>
                 <span>
                   89 FF Housing Board Society,<br />
                   Sector 33, Gurgaon<br />
                   Haryana — 122022
                 </span>
               </div>
-              <div className="flex items-center gap-3 text-base text-gray-700 font-medium">
-                <span className="text-[#651A16]">📞</span>
-                <a href="tel:+918851502840" className="text-gray-700 hover:text-[#C9A84C] transition-colors no-underline">
+              <div className="flex items-center gap-3 text-base text-gray-400 font-medium">
+                <span className="text-[#C9A84C]">📞</span>
+                <a href="tel:+918851502840" className="text-gray-400 hover:text-[#C9A84C] transition-colors no-underline">
                   +91 88515-02840
                 </a>
               </div>
-              <div className="flex items-center gap-3 text-base text-gray-700 font-medium">
-                <span className="text-[#651A16]">✉️</span>
-                <a href="mailto:support@ramakirtifoundation.co.in" className="text-gray-700 hover:text-[#C9A84C] transition-colors no-underline">
+              <div className="flex items-center gap-3 text-base text-gray-400 font-medium">
+                <span className="text-[#C9A84C]">✉️</span>
+                <a href="mailto:support@ramakirtifoundation.co.in" className="text-gray-400 hover:text-[#C9A84C] transition-colors no-underline">
                   support@ramakirtifoundation.co.in
                 </a>
               </div>
-              <div className="flex items-center gap-3 text-base text-gray-700 font-medium">
-                <span className="text-[#651A16]">🕐</span>
+              <div className="flex items-center gap-3 text-base text-gray-400 font-medium">
+                <span className="text-[#C9A84C]">🕐</span>
                 <span>Mon–Sat, 9 AM – 6 PM</span>
               </div>
             </div>
           </div>
         </div>
 
-        <hr className="border-gray-200 mb-8" />
+        <hr className="border-gray-800 mb-8" />
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-500 flex-wrap font-medium">
           <span>© {year} Ramakirti Foundation. All rights reserved.</span>
           <div className="flex gap-6">
-            <Link href="/privacy" className="text-gray-500 hover:text-[#651A16] transition-colors no-underline">
+            <Link href="/privacy" className="text-gray-500 hover:text-white transition-colors no-underline">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="text-gray-500 hover:text-[#651A16] transition-colors no-underline">
+            <Link href="/terms" className="text-gray-500 hover:text-white transition-colors no-underline">
               Terms of Use
             </Link>
-            <Link href="/refund" className="text-gray-500 hover:text-[#651A16] transition-colors no-underline">
+            <Link href="/refund" className="text-gray-500 hover:text-white transition-colors no-underline">
               Refund Policy
             </Link>
           </div>

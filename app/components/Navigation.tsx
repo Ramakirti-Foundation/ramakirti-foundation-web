@@ -139,17 +139,16 @@ export default function Navigation({ transparent = false }: { transparent?: bool
           </div>
 
           {/* CTA */}
-          <div className="hidden md:flex items-center gap-3 ml-3">
+          <div className="hidden md:flex items-center gap-3 ml-3 h-full">
             <Link
               href="/donate"
-              className="inline-flex items-center gap-2 font-bold text-[13.5px] text-white no-underline rounded-lg px-5 py-[10px] transition-all duration-300 hover:-translate-y-[2px]"
+              className="inline-flex items-center justify-center font-bold text-sm text-white no-underline rounded-lg px-6 py-2.5 transition-all duration-300 hover:-translate-y-0.5 hover:text-white hover:bg-[#8B2520] whitespace-nowrap"
               style={{
-                fontFamily: 'var(--font-plus-jakarta, sans-serif)',
-                background: '#6E1110',
-                boxShadow: '0 4px 16px rgba(110,17,16,.35)',
+                background: '#651A16',
+                boxShadow: '0 4px 16px rgba(101,26,22,.35)',
               }}
             >
-              ❤️ Donate Now
+              Donate Now
             </Link>
           </div>
 
@@ -236,10 +235,10 @@ export default function Navigation({ transparent = false }: { transparent?: bool
           <div className="mt-4">
             <Link
               href="/donate"
-              className="block w-full text-center font-bold text-white py-4 rounded-lg no-underline hover:opacity-90"
-              style={{ background: '#6E1110', fontFamily: 'var(--font-plus-jakarta, sans-serif)' }}
+              className="block w-full text-center font-bold text-white py-4 rounded-lg no-underline hover:bg-[#8B2520] hover:text-white transition-colors"
+              style={{ background: '#651A16' }}
             >
-              ❤️ Donate Now
+              Donate Now
             </Link>
           </div>
         </div>

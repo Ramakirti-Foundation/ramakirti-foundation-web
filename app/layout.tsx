@@ -103,7 +103,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body suppressHydrationWarning={true} className={`${atkinson.variable} font-sans antialiased text-[18px]`}>
+      <body suppressHydrationWarning={true} className={`${atkinson.variable} font-sans antialiased text-[19px]`}>
         <main className="min-h-screen">
           {children}
         </main>
