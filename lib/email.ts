@@ -5,7 +5,7 @@
  */
 
 import nodemailer from 'nodemailer';
-import { generateReceiptPDF } from './pdf-generator';
+
 
 interface ReceiptEmailData {
   donor_name: string;
@@ -28,8 +28,6 @@ export async function sendReceiptEmail(data: ReceiptEmailData) {
     },
   });
 
-  // Generate PDF receipt
-  const pdfBuffer = await generateReceiptPDF(data);
 
   const htmlContent = `
     <!DOCTYPE html>
@@ -116,13 +114,6 @@ export async function sendReceiptEmail(data: ReceiptEmailData) {
     to: data.donor_email,
     subject: `Donation Receipt - ₹${data.amount.toLocaleString('en-IN')} | Ramakirti Foundation`,
     html: htmlContent,
-    attachments: [
-      {
-        filename: `Ramakirti_Receipt_${data.receipt_number}.pdf`,
-        content: pdfBuffer,
-        contentType: 'application/pdf',
-      },
-    ],
   });
 }
 
