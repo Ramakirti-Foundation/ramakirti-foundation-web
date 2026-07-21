@@ -151,9 +151,9 @@ export default async function HomePage() {
         {/* ─── PILLARS ─── */}
         <section className="relative py-24 bg-white overflow-hidden section-pillars" id="pillars" aria-label="Our initiatives">
           <div
-            className="absolute inset-0 w-full h-full bg-cover bg-center pillars-bg"
+            className="absolute inset-0 w-full h-full bg-cover bg-center pillars-bg hidden md:block"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/95 to-white/80" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/95 to-white/80 hidden md:block" />
 
           <div className="relative z-10 max-w-[1280px] mx-auto px-5">
             <div className="text-center mb-16">
