@@ -151,4 +151,12 @@
 
 .hero-bg {
   transition: transform 0.4s ease-in-out, background-size 0.4s ease-in-out;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg {
+    transition: none !important;
+    transform: none !important;
+  }
 }
