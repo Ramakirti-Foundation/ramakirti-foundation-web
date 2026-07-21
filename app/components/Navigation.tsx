@@ -185,10 +185,11 @@ export default function Navigation({ transparent = false }: { transparent?: bool
         ref={menuRef}
         className="md:hidden fixed z-40 left-0 right-0 bg-white transition-all duration-300"
         style={{
-          top: '72px',
+          top: '64px',
           borderTop: menuOpen ? '4px solid #6E1110' : '0px solid transparent',
           maxHeight: menuOpen ? '100vh' : '0',
           overflow: 'hidden',
+          visibility: menuOpen ? 'visible' : 'hidden',
         }}
       >
         <div className="p-5">

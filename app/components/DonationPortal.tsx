@@ -91,11 +91,11 @@ const INITIATIVES = {
  * Impact labels for preset donation amounts
  */
 const IMPACT_LABELS = {
-  500: '₹500 = Textbook for 1 child',
-  1000: '₹1,000 = School supplies for 5 children',
-  2000: '₹2,000 = Sponsor education (1 month)',
-  5000: '₹5,000 = Equip classroom',
-  10000: '₹10,000 = Support a center (1 month)',
+  500: "Your ₹500 each will fund 2 children's monthly stationary and books",
+  1000: "Your ₹1,000 each will fund 4 children's monthly stationary and books",
+  2000: "Your ₹2,000 each will Sponsor education (1 month)",
+  5000: "Your ₹5,000 each will Equip classroom",
+  10000: "Your ₹10,000 each will Support a center (1 month)",
 };
 
 /**

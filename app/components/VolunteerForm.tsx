@@ -7,7 +7,7 @@ export default function VolunteerForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   return (
-    <div className="bg-white rounded-2xl p-8 md:p-12 shadow-md border border-[#e5e7eb] max-w-3xl mx-auto text-left">
+    <div className="volunteer-form-wrapper bg-white rounded-2xl p-5 md:p-12 shadow-md border border-[#e5e7eb] max-w-3xl mx-auto text-left">
       <div className="text-center mb-8">
         <div className="text-5xl mb-4">🤝</div>
         <h3 className="font-extrabold text-[28px] text-[#6E1110] font-[family-name:var(--font-plus-jakarta)] mb-2">
