@@ -183,10 +183,10 @@ export default function Navigation({ transparent = false }: { transparent?: bool
       {/* Mobile menu */}
       <div
         ref={menuRef}
-        className="md:hidden fixed z-40 left-0 right-0 bg-white border-t-4 transition-all duration-300"
+        className="md:hidden fixed z-40 left-0 right-0 bg-white transition-all duration-300"
         style={{
           top: '72px',
-          borderTopColor: '#6E1110',
+          borderTop: menuOpen ? '4px solid #6E1110' : '0px solid transparent',
           maxHeight: menuOpen ? '100vh' : '0',
           overflow: 'hidden',
         }}

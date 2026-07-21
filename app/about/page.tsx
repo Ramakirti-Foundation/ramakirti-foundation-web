@@ -71,18 +71,18 @@ export default function AboutPage() {
               </div>
 
               {/* Images */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="about-images-container">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
                   src="/img/Initiatives/A Day in Parsona/A Day in Pasona.webp" 
                   alt="Ramakirti Foundation team" 
-                  className="rounded-2xl w-full h-[280px] object-cover shadow-lg border-2 border-white"
+                  className="about-image"
                 />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
                   src="/img/Food For Poor.jpg" 
                   alt="Food distribution" 
-                  className="rounded-2xl w-full h-[280px] object-cover shadow-lg border-2 border-white mt-10"
+                  className="about-image"
                 />
               </div>
 
@@ -124,9 +124,9 @@ export default function AboutPage() {
               </div>
               
               <div className="mt-12">
-                <Link
+                  <Link
                     href="/donate"
-                    className="inline-flex items-center justify-center font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-white px-9 py-[18px] rounded-2xl bg-[#651A16] hover:bg-[#8B2520] transition-colors no-underline min-w-[250px]"
+                    className="btn-global-primary no-underline"
                   >
                     Support Our Mission
                   </Link>

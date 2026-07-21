@@ -182,15 +182,13 @@ export default async function RecentInitiativesPage() {
             <div className="flex gap-4 justify-center flex-wrap">
               <Link
                 href="/donate"
-                className="inline-flex items-center gap-2 font-bold text-lg text-white no-underline rounded-lg"
-                style={{ background: '#C9A84C', padding: '18px 36px', fontFamily: 'var(--font-plus-jakarta, sans-serif)', boxShadow: '0 4px 16px rgba(201,168,76,.3)' }}
+                className="btn-global-primary no-underline"
               >
                 Donate Now
               </Link>
               <Link
                 href="/volunteer"
-                className="inline-flex items-center gap-2 font-bold text-lg text-white no-underline rounded-lg"
-                style={{ background: 'rgba(255,255,255,.14)', border: '2px solid rgba(255,255,255,.5)', padding: '18px 36px', fontFamily: 'var(--font-plus-jakarta, sans-serif)' }}
+                className="btn-global-primary no-underline"
               >
                 Volunteer With Us
               </Link>

@@ -74,10 +74,10 @@ export default function VolunteerForm() {
 
           <div>
             <label className="block text-sm font-bold text-gray-700 mb-2">Skills (Select all that apply)</label>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="checkbox-group-container">
               {['Teaching', 'Social Media', 'Content Writing', 'Event Management', 'Photography', 'Graphic Design'].map(skill => (
-                <label key={skill} className="flex items-center gap-2 cursor-pointer border p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                  <input type="checkbox" name="skills" value={skill} className="w-4 h-4 text-[#6E1110]" />
+                <label key={skill} className="checkbox-item cursor-pointer border rounded-lg hover:bg-gray-50 transition-colors px-3">
+                  <input type="checkbox" name="skills" value={skill} className="w-4 h-4 mr-2 text-[#6E1110]" />
                   <span className="text-sm font-semibold text-gray-700">{skill}</span>
                 </label>
               ))}
@@ -86,10 +86,10 @@ export default function VolunteerForm() {
 
           <div>
             <label className="block text-sm font-bold text-gray-700 mb-2">Interests</label>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="checkbox-group-container">
               {['Education', 'Healthcare', 'Women Empowerment', 'Food Distribution'].map(interest => (
-                <label key={interest} className="flex items-center gap-2 cursor-pointer border p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                  <input type="checkbox" name="interests" value={interest} className="w-4 h-4 text-[#6E1110]" />
+                <label key={interest} className="checkbox-item cursor-pointer border rounded-lg hover:bg-gray-50 transition-colors px-3">
+                  <input type="checkbox" name="interests" value={interest} className="w-4 h-4 mr-2 text-[#6E1110]" />
                   <span className="text-sm font-semibold text-gray-700">{interest}</span>
                 </label>
               ))}

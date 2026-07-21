@@ -38,31 +38,31 @@ export default function TestimonialForm() {
               {errorMsg}
             </div>
           )}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 form-group">
             <div>
               <label className="block text-xs font-bold text-gray-700 uppercase mb-1">Your Name</label>
-              <input type="text" name="name" required className="w-full border rounded-lg p-3 outline-none focus:border-[#6E1110] focus:ring-1 focus:ring-[#6E1110]" />
+              <input type="text" name="name" required />
             </div>
             <div>
               <label className="block text-xs font-bold text-gray-700 uppercase mb-1">Email</label>
-              <input type="email" name="email" required className="w-full border rounded-lg p-3 outline-none focus:border-[#6E1110] focus:ring-1 focus:ring-[#6E1110]" />
+              <input type="email" name="email" required />
             </div>
             <div>
               <label className="block text-xs font-bold text-gray-700 uppercase mb-1">Role / Association</label>
-              <input type="text" name="role" required placeholder="e.g. Volunteer" className="w-full border rounded-lg p-3 outline-none focus:border-[#6E1110] focus:ring-1 focus:ring-[#6E1110]" />
+              <input type="text" name="role" required placeholder="e.g. Volunteer" />
             </div>
           </div>
-          <div>
+          <div className="form-group">
             <label className="block text-xs font-bold text-gray-700 uppercase mb-1">Your Story</label>
-            <textarea name="message" required rows={4} className="w-full border rounded-lg p-3 outline-none focus:border-[#6E1110] focus:ring-1 focus:ring-[#6E1110]"></textarea>
+            <textarea name="message" required rows={4}></textarea>
           </div>
           <button 
             type="submit" 
             disabled={status === 'loading'}
-            className="w-full bg-[#6E1110] text-white font-bold py-3 rounded-lg hover:bg-[#8B2520] transition-colors disabled:opacity-70 flex items-center justify-center gap-2"
+            className="mt-4 btn-global-primary w-full"
           >
             {status === 'loading' ? (
-              <><span className="inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Submitting...</>
+              <><span className="inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin align-middle mr-2" /> Submitting...</>
             ) : 'Submit Testimonial'}
           </button>
         </form>

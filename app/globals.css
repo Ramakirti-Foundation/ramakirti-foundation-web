@@ -242,9 +242,52 @@ h4 { @apply text-xl md:text-2xl; }
 }
 
 /* Fix rogue scroll border */
-.scroll-indicator, body::after { 
-  display: none !important; 
-  border: none !important; 
+/* Body Overflow and Mobile Fixes */
+body, html, .page-wrapper { overflow-x: hidden; max-width: 100vw; }
+
+/* Remove white border */
+.contact-page-container, footer { border: none !important; }
+
+/* Contact email text */
+.contact-info-text, .email-text { word-break: break-all; overflow-wrap: anywhere; }
+
+/* About images */
+.about-images-container { display: flex; flex-direction: column; gap: 16px; width: 100%; }
+.about-image { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 12px; }
+
+@media (min-width: 768px) {
+  .about-images-container {
+    flex-direction: row;
+  }
+}
+
+/* WhatsApp Button */
+.whatsapp-support-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background-color: #25D366; /* Standard WA Green */
+  color: white; border-radius: 30px; padding: 12px 24px;
+  width: 100%; max-width: 320px;
+  margin: 16px auto; /* Reduced margin */
+  transition: transform 0.2s ease;
+  font-weight: bold;
+}
+.whatsapp-support-btn:hover {
+  transform: scale(1.02);
+}
+.whatsapp-support-btn svg { width: 24px; height: 24px; fill: currentColor; }
+
+/* Checkbox Groups for Forms */
+.checkbox-group-container { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+.checkbox-item { display: flex; align-items: center; width: 100%; padding: 8px 0; }
+
+@media (min-width: 768px) {
+  .checkbox-group-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .checkbox-item {
+    width: calc(50% - 6px);
+  }
 }
 
 /* Universal Form Input Styling */
@@ -304,20 +347,27 @@ h4 { @apply text-xl md:text-2xl; }
   /* Tighten the main form container */
   .form-container, 
   .contact-form-wrapper, 
-  .volunteer-form-wrapper {
-    padding: 24px 16px !important;
+  .volunteer-form-wrapper,
+  .form-wrapper {
+    padding: 16px 8px !important;
     margin: 16px auto !important;
   }
 
   /* Reduce spacing between individual form inputs */
   .form-group, 
   .input-wrapper {
-    margin-bottom: 16px !important;
+    margin-bottom: 12px !important;
+  }
+
+  input, textarea { 
+    width: 100%; 
+    padding: 12px; 
+    box-sizing: border-box; 
   }
 
   /* If the form uses flexbox or grid for layout */
   form {
-    gap: 16px !important;
+    gap: 12px !important;
   }
 
   /* Clamp maximum vertical padding for all major sections */

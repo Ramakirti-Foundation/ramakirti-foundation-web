@@ -140,8 +140,9 @@ export default async function RequirementsPage() {
               <p className="text-gray-700 mb-6 text-[16px]">
                 You can drop off or courier these items to our main centre at:<br /><br />
                 <strong>Ramakirti Foundation</strong><br />
-                89 FF Housing Board Society,<br />
-                Sector 33, Gurgaon — 122022
+                Sector 57, Tigra,<br />
+                behind the Legend Apartment,<br />
+                Gurugram, Haryana
               </p>
               <div className="flex gap-4 justify-center flex-wrap">
                 <Link
