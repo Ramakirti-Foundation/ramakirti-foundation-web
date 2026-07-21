@@ -1,0 +1,15 @@
+.hero-bg {
+  background-image: url('/img/Education is right to everyone.webp');
+}
+
+.pillars-bg {
+  background-image: url('/img/Initiatives/Covid Mask Distribution/covid-mask-1_result-e1655897386651.webp');
+}
+
+.delay-100 {
+  transition-delay: 100ms;
+}
+
+.delay-200 {
+  transition-delay: 200ms;
+}
