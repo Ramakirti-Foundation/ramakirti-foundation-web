@@ -74,7 +74,7 @@ export default async function HomePage() {
             </div>
 
             {/* Hero stats */}
-            <div className="stats-container mt-16">
+            <div className="stats-container mt-12 md:mt-16">
               {[
                 { target: 1240, suffix: '+', label: 'Children Educated' },
                 { target: 5800, suffix: '+', label: 'Meals Monthly' },
@@ -209,21 +209,21 @@ export default async function HomePage() {
               <p className="text-gray-500 max-w-[620px] mx-auto text-[18px]">We hold ourselves to the highest standards of accountability so you can give with complete confidence.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div className="trust-cards-container mb-12">
               <div className="trust-card bg-white p-8 rounded-[24px] border-t-[4px] border-t-[#651A16] text-center shadow-sm border border-gray-200 flex flex-col items-center">
-                <div className="text-[48px] mb-5">🏛️</div>
+                <div className="text-[48px] mb-5" aria-hidden="true">🏛️</div>
                 <h3 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[20px] text-[#6E1110] mb-3">80G Tax Exempt</h3>
                 <p className="text-gray-500 text-[15px] leading-relaxed flex-grow">All donations are eligible for income tax deduction under Section 80G(5)(vi). We provide digitally signed receipts instantly.</p>
               </div>
 
               <div className="trust-card bg-white p-8 rounded-[24px] border-t-[4px] border-t-[#651A16] text-center shadow-sm border border-gray-200 flex flex-col items-center">
-                <div className="text-[48px] mb-5">🤝</div>
+                <div className="text-[48px] mb-5" aria-hidden="true">🤝</div>
                 <h3 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[20px] text-[#6E1110] mb-3">On-Ground Impact</h3>
                 <p className="text-gray-500 text-[15px] leading-relaxed flex-grow">We are a grassroots NGO. 100% of your contributions go directly into funding programs, not expensive overheads.</p>
               </div>
 
               <div className="trust-card bg-white p-8 rounded-[24px] border-t-[4px] border-t-[#651A16] text-center shadow-sm border border-gray-200 flex flex-col items-center">
-                <div className="text-[48px] mb-5">🔒</div>
+                <div className="text-[48px] mb-5" aria-hidden="true">🔒</div>
                 <h3 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[20px] text-[#6E1110] mb-3">Secure Payments</h3>
                 <p className="text-gray-500 text-[15px] leading-relaxed flex-grow">Donations are processed securely with bank-grade encryption via UPI and direct bank transfers.</p>
               </div>

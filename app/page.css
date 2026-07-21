@@ -43,10 +43,13 @@
 .hero-button:hover {
   transform: scale(1.02);
 }
-.hero-button:active, .hero-button:focus {
-  background-color: var(--color-primary, #a11f24) !important;
+.hero-button:active, .hero-button:focus, .cta-button:active, .cta-button:focus {
+  background-color: var(--brand-red, #a11f24) !important;
   color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+  outline: none;
 }
+
 
 /* Stats */
 .stats-container {
@@ -102,20 +105,50 @@
   }
 }
 
-/* What We Do Cards */
+/* What We Do Cards & Trust Cards */
 @media (max-width: 768px) {
   .section-pillars {
     padding-top: 32px;
     padding-bottom: 32px;
     gap: 24px;
   }
-  .pillar-card {
-    aspect-ratio: 1 / 1;
-    min-height: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 24px;
-    box-sizing: border-box;
+}
+
+.pillar-card {
+  aspect-ratio: auto;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.trust-cards-container {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .trust-cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
+}
+
+.trust-card {
+  min-height: 280px;
+  padding: 24px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.hero-bg {
+  transition: transform 0.4s ease-in-out, background-size 0.4s ease-in-out;
 }

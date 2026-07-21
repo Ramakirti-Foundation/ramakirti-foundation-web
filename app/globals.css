@@ -230,3 +230,19 @@ h4 { @apply text-xl md:text-2xl; }
   text-decoration: underline;
   text-underline-offset: 4px;
 }
+
+/* Footer text colors */
+.footer-section p, 
+.footer-section span, 
+.footer-section li, 
+.footer-section .contact-info, 
+.footer-section .copyright { 
+  color: #ffffff !important; 
+  opacity: 0.9; 
+}
+
+/* Fix rogue scroll border */
+.scroll-indicator, body::after { 
+  display: none !important; 
+  border: none !important; 
+}

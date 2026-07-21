@@ -137,7 +137,7 @@ export default function Footer() {
         <hr className="border-gray-800 mb-8" />
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-500 flex-wrap font-medium">
-          <span>© {year} Ramakirti Foundation. All rights reserved.</span>
+          <span className="copyright">© Ramakirti Foundation. All rights reserved.</span>
           <div className="flex gap-6">
             <Link href="/privacy" className="text-gray-500 hover:text-white transition-colors no-underline">
               Privacy Policy
