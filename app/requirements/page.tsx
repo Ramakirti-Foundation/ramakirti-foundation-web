@@ -105,7 +105,7 @@ export default async function RequirementsPage() {
                 
                 return (
                   <div key={req.id} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                    <h3 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-gray-800 mb-4 h-[54px] line-clamp-2">
+                    <h3 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-gray-800 mb-4 min-h-[54px]">
                       {req.itemName}
                     </h3>
                     
