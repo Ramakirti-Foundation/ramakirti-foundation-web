@@ -212,7 +212,7 @@ export default async function HomePage() {
         </section>
 
         {/* ─── TESTIMONIALS ─── */}
-        <section className="py-24 bg-[#FDF8F7]" aria-label="Testimonials">
+        <section className="bg-[#FDF8F7] section-testimonials" aria-label="Testimonials">
           <div className="max-w-[1280px] mx-auto px-5">
             <div className="text-center mb-16">
               <span className="text-[#C9A84C] font-[family-name:var(--font-plus-jakarta)] font-bold text-sm uppercase tracking-[.15em]">Voices From the Field</span>
