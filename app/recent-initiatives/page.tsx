@@ -182,13 +182,13 @@ export default async function RecentInitiativesPage() {
             <div className="flex gap-4 justify-center flex-wrap">
               <Link
                 href="/donate"
-                className="btn-global-primary no-underline"
+                className="btn-global-white no-underline"
               >
                 Donate Now
               </Link>
               <Link
                 href="/volunteer"
-                className="btn-global-primary no-underline"
+                className="btn-global-white no-underline"
               >
                 Volunteer With Us
               </Link>
