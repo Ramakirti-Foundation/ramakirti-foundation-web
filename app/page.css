@@ -13,3 +13,109 @@
 .delay-200 {
   transition-delay: 200ms;
 }
+
+/* Hero buttons */
+.hero-buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .hero-buttons-container {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+.hero-button {
+  width: 100%;
+  max-width: 320px;
+  padding: 14px 24px;
+  border-radius: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.15s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-button:hover {
+  transform: scale(1.02);
+}
+.hero-button:active, .hero-button:focus {
+  background-color: var(--color-primary, #a11f24) !important;
+  color: #ffffff !important;
+}
+
+/* Stats */
+.stats-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+  margin: 0 auto;
+  width: 100%;
+}
+.stat-item {
+  margin: 12px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .stats-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .stat-item {
+    margin: 0;
+  }
+}
+
+/* Info strip marquee */
+.info-strip-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  width: 100%;
+}
+.info-strip-content {
+  display: flex;
+  animation: scroll-marquee 20s linear infinite;
+}
+@keyframes scroll-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.info-strip-wrapper:hover .info-strip-content, .info-strip-wrapper:active .info-strip-content {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .info-strip-content {
+    animation: none;
+    overflow-x: auto;
+  }
+}
+
+/* What We Do Cards */
+@media (max-width: 768px) {
+  .section-pillars {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    gap: 24px;
+  }
+  .pillar-card {
+    aspect-ratio: 1 / 1;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+}

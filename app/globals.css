@@ -40,8 +40,21 @@ html {
 /* Base elements */
 body {
   @apply bg-white text-gray-700 font-sans;
+  font-family: var(--font-atkinson), 'Inter', 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333333;
   transition: background-color var(--transition-base);
 }
+p {
+  margin-bottom: 1rem;
+}
+@media (min-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+}
+
 
 main {
   @apply min-h-screen;
@@ -180,4 +193,40 @@ h4 { @apply text-xl md:text-2xl; }
   opacity: 1;
 }
 
+/* WhatsApp FAB styling for responsiveness */
+@media (max-width: 768px) {
+  .whatsapp-fab {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+  }
+  .whatsapp-fab-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+@media (min-width: 769px) {
+  .whatsapp-fab {
+    bottom: 24px;
+    right: 24px;
+    width: 60px;
+    height: 60px;
+  }
+  .whatsapp-fab-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
 
+/* Footer Link styling */
+.footer-section a, .footer-section .quick-links a, .footer-section .contact-info p {
+  color: #ffffff !important;
+  opacity: 0.9;
+  text-decoration: none;
+}
+.footer-section a:hover {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

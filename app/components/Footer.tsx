@@ -21,7 +21,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-black border-t border-gray-900 text-gray-300 pt-20 pb-8" role="contentinfo">
+    <footer className="bg-black border-t border-gray-900 text-gray-300 pt-20 pb-8 footer-section" role="contentinfo">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr] gap-12 mb-16">
           {/* Brand column */}
@@ -111,9 +111,7 @@ export default function Footer() {
               <div className="flex items-start gap-3 text-base text-gray-400 leading-relaxed font-medium">
                 <span className="mt-1 text-[#C9A84C]">📍</span>
                 <span>
-                  89 FF Housing Board Society,<br />
-                  Sector 33, Gurgaon<br />
-                  Haryana — 122022
+                  Ramakirti Foundation, Sector 57, Tigra, behind the Legend Apartment, Gurugram, Haryana
                 </span>
               </div>
               <div className="flex items-center gap-3 text-base text-gray-400 font-medium">

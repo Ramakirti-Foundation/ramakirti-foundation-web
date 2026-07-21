@@ -58,29 +58,29 @@ export default async function HomePage() {
             <p className="text-[20px] text-white/90 mb-10 max-w-[640px] mx-auto leading-[1.65] drop-shadow-md">
               We transform lives through quality education, nutritious meals, and women&apos;s empowerment — one family at a time in Haryana&apos;s most underserved communities.
             </p>
-            <div className="flex gap-4 justify-center flex-wrap">
+            <div className="hero-buttons-container">
               <Link
                 href="/donate"
-                className="inline-flex items-center justify-center font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-[#651A16] px-9 py-[18px] rounded-2xl no-underline bg-white border-2 border-white hover:bg-[#651A16] hover:text-white hover:border-[#651A16] transition-colors"
+                className="inline-flex items-center justify-center font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-[#651A16] no-underline bg-white border-2 border-white transition-colors hero-button"
               >
                 Donate Now
               </Link>
               <Link
                 href="/volunteer"
-                className="inline-flex items-center justify-center font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-[#651A16] px-9 py-[18px] rounded-2xl bg-white border-2 border-white hover:bg-[#651A16] hover:text-white hover:border-[#651A16] transition-colors no-underline"
+                className="inline-flex items-center justify-center font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-[#651A16] bg-white border-2 border-white transition-colors no-underline hero-button"
               >
                 Volunteer With Us
               </Link>
             </div>
 
             {/* Hero stats */}
-            <div className="flex gap-8 justify-center mt-16 flex-wrap">
+            <div className="stats-container mt-16">
               {[
                 { target: 1240, suffix: '+', label: 'Children Educated' },
                 { target: 5800, suffix: '+', label: 'Meals Monthly' },
                 { target: 320, suffix: '+', label: 'Women Trained' },
               ].map(({ target, suffix, label }, i) => (
-                <div key={label} className={`text-center ${i > 0 ? 'border-l border-white/25 pl-8' : ''}`}>
+                <div key={label} className={`stat-item ${i > 0 ? 'md:border-l border-white/25 md:pl-8' : ''}`}>
                   <span className="block font-[family-name:var(--font-plus-jakarta)] font-extrabold text-[28px] text-white drop-shadow">
                     <AnimatedCounter target={target} suffix={suffix} />
                   </span>
@@ -92,8 +92,8 @@ export default async function HomePage() {
         </section>
 
         {/* ─── STATS STRIP ─── */}
-        <div className="bg-[#F9FAFB] py-4 border-y-2 border-[#E5C96A]/30 overflow-x-auto whitespace-nowrap scrollbar-hide">
-          <div className="max-w-[1280px] mx-auto px-5 flex gap-8 md:gap-12 justify-center items-center min-w-max">
+        <div className="bg-[#F9FAFB] py-4 border-y-2 border-[#E5C96A]/30 w-full info-strip-wrapper">
+          <div className="info-strip-content" aria-label="Quick statistics">
             {[
               { icon: '🗓', text: 'Founded 2021' },
               { icon: '📍', text: 'Gurgaon, Haryana' },
@@ -101,7 +101,20 @@ export default async function HomePage() {
               { icon: '⭐', text: '4.9 Rating (24 Reviews)' },
               { icon: '🤝', text: '50+ Active Volunteers' },
             ].map(({ icon, text }) => (
-              <div key={text} className="flex items-center gap-2 font-[family-name:var(--font-plus-jakarta)] font-bold text-[14px] md:text-[15px] text-[#6E1110]">
+              <div key={text} className="flex items-center gap-2 font-[family-name:var(--font-plus-jakarta)] font-bold text-[14px] md:text-[15px] text-[#6E1110] mx-4 md:mx-8">
+                <span className="text-[20px] md:text-[22px]">{icon}</span>
+                {text}
+              </div>
+            ))}
+            {/* Duplicate for infinite scroll */}
+            {[
+              { icon: '🗓', text: 'Founded 2021' },
+              { icon: '📍', text: 'Gurgaon, Haryana' },
+              { icon: '🏛️', text: '80G Tax Exempt' },
+              { icon: '⭐', text: '4.9 Rating (24 Reviews)' },
+              { icon: '🤝', text: '50+ Active Volunteers' },
+            ].map(({ icon, text }) => (
+              <div key={text + "-dup"} aria-hidden="true" className="flex items-center gap-2 font-[family-name:var(--font-plus-jakarta)] font-bold text-[14px] md:text-[15px] text-[#6E1110] mx-4 md:mx-8">
                 <span className="text-[20px] md:text-[22px]">{icon}</span>
                 {text}
               </div>
@@ -110,7 +123,7 @@ export default async function HomePage() {
         </div>
 
         {/* ─── PILLARS ─── */}
-        <section className="relative py-24 bg-white overflow-hidden" id="pillars" aria-label="Our initiatives">
+        <section className="relative py-24 bg-white overflow-hidden section-pillars" id="pillars" aria-label="Our initiatives">
           <div
             className="absolute inset-0 w-full h-full bg-cover bg-center pillars-bg"
           />
@@ -229,16 +242,16 @@ export default async function HomePage() {
             <p className="text-white/85 text-[19px] mb-12 max-w-[580px] mx-auto leading-relaxed">
               Whether you donate, volunteer, or simply share our story — every single action ripples outward and changes a life.
             </p>
-            <div className="flex gap-4 justify-center flex-wrap">
+            <div className="hero-buttons-container">
               <Link
                 href="/donate"
-                className="inline-flex items-center justify-center font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-[#651A16] px-10 py-[18px] rounded-2xl no-underline bg-white border-2 border-white hover:bg-[#651A16] hover:text-white hover:border-[#651A16] transition-colors"
+                className="inline-flex items-center justify-center font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-[#651A16] no-underline bg-white border-2 border-white transition-colors hero-button"
               >
                 Donate Now
               </Link>
               <Link
                 href="/volunteer"
-                className="inline-flex items-center justify-center font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-[#651A16] px-10 py-[18px] rounded-2xl bg-white border-2 border-white hover:bg-[#651A16] hover:text-white hover:border-[#651A16] transition-colors no-underline"
+                className="inline-flex items-center justify-center font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-[#651A16] bg-white border-2 border-white transition-colors no-underline hero-button"
               >
                 Volunteer
               </Link>
