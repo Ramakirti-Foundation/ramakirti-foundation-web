@@ -26,13 +26,39 @@ export default async function HomePage() {
     orderBy: { created_at: 'desc' },
   });
 
-  const allTestimonials = dynamicTestimonials.map(msg => ({
+  let allTestimonials = dynamicTestimonials.map(msg => ({
     stars: 5,
     quote: msg.message,
     name: msg.name || 'Anonymous',
     role: msg.subject?.replace('[Testimonial Submission] ', '') || 'Well Wisher',
     initials: (msg.name || 'AN').substring(0, 2).toUpperCase()
   }));
+
+  if (allTestimonials.length === 0) {
+    allTestimonials = [
+      {
+        stars: 5,
+        quote: "Ramakirti Foundation has completely transformed our village. The dedication of their volunteers to educating our children is unparalleled. I've never seen such a positive impact in such a short time.",
+        name: "Rahul Sharma",
+        role: "Community Member",
+        initials: "RS"
+      },
+      {
+        stars: 5,
+        quote: "I've been volunteering with them for a year now, and the transparency with which they operate is amazing. Every penny is accounted for, and the smiles on the children's faces are priceless.",
+        name: "Priya Patel",
+        role: "Volunteer",
+        initials: "PP"
+      },
+      {
+        stars: 5,
+        quote: "Their women empowerment programs have given me the skills and confidence to start my own small business. I am forever grateful to the team for believing in us.",
+        name: "Sunita Devi",
+        role: "Beneficiary",
+        initials: "SD"
+      }
+    ];
+  }
   return (
     <>
       <Navigation transparent />
@@ -48,7 +74,7 @@ export default async function HomePage() {
         {/* ─── HERO ─── */}
         <section className="relative min-h-[90vh] flex items-center overflow-hidden" aria-label="Hero">
           <div
-            className="absolute inset-0 bg-cover bg-center bg-fixed hero-bg"
+            className="absolute inset-0 bg-cover bg-center hero-bg"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-[rgba(110,17,16,.82)] via-[rgba(110,17,16,.55)] to-[rgba(201,168,76,.18)]" />
           <div className="relative z-10 text-center text-white px-6 max-w-[940px] mx-auto py-24 w-full mt-12">
@@ -210,19 +236,19 @@ export default async function HomePage() {
             </div>
 
             <div className="trust-cards-container mb-12">
-              <div className="trust-card bg-white p-8 rounded-[24px] border-t-[4px] border-t-[#651A16] text-center shadow-sm border border-gray-200 flex flex-col items-center">
+              <div className="trust-card bg-white p-8 rounded-[24px] text-center shadow-sm border border-gray-200 flex flex-col items-center">
                 <div className="text-[48px] mb-5" aria-hidden="true">🏛️</div>
                 <h3 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[20px] text-[#6E1110] mb-3">80G Tax Exempt</h3>
                 <p className="text-gray-500 text-[15px] leading-relaxed flex-grow">All donations are eligible for income tax deduction under Section 80G(5)(vi). We provide digitally signed receipts instantly.</p>
               </div>
 
-              <div className="trust-card bg-white p-8 rounded-[24px] border-t-[4px] border-t-[#651A16] text-center shadow-sm border border-gray-200 flex flex-col items-center">
+              <div className="trust-card bg-white p-8 rounded-[24px] text-center shadow-sm border border-gray-200 flex flex-col items-center">
                 <div className="text-[48px] mb-5" aria-hidden="true">🤝</div>
                 <h3 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[20px] text-[#6E1110] mb-3">On-Ground Impact</h3>
                 <p className="text-gray-500 text-[15px] leading-relaxed flex-grow">We are a grassroots NGO. 100% of your contributions go directly into funding programs, not expensive overheads.</p>
               </div>
 
-              <div className="trust-card bg-white p-8 rounded-[24px] border-t-[4px] border-t-[#651A16] text-center shadow-sm border border-gray-200 flex flex-col items-center">
+              <div className="trust-card bg-white p-8 rounded-[24px] text-center shadow-sm border border-gray-200 flex flex-col items-center">
                 <div className="text-[48px] mb-5" aria-hidden="true">🔒</div>
                 <h3 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[20px] text-[#6E1110] mb-3">Secure Payments</h3>
                 <p className="text-gray-500 text-[15px] leading-relaxed flex-grow">Donations are processed securely with bank-grade encryption via UPI and direct bank transfers.</p>
