@@ -246,3 +246,103 @@ h4 { @apply text-xl md:text-2xl; }
   display: none !important; 
   border: none !important; 
 }
+
+/* Universal Form Input Styling */
+.form-group input, 
+.form-group textarea, 
+.form-group select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  font-family: var(--font-atkinson), sans-serif;
+  font-size: 16px;
+  background-color: #ffffff;
+  color: #333333;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Focus States for Accessibility and UX */
+.form-group input:focus, 
+.form-group textarea:focus, 
+.form-group select:focus {
+  border-color: var(--brand-red, #651A16);
+  box-shadow: 0 0 0 3px rgba(101, 26, 22, 0.15);
+  outline: none;
+}
+
+/* Global Primary Button Class */
+.btn-global-primary {
+  display: inline-block;
+  width: 100%;
+  max-width: 320px;
+  padding: 14px 24px;
+  border-radius: 30px;
+  background-color: var(--brand-red, #651A16);
+  color: #ffffff !important;
+  font-weight: bold;
+  text-align: center;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, border 0.2s ease;
+}
+
+.btn-global-primary:hover {
+  transform: scale(1.02);
+  background-color: #8B2520;
+}
+
+.btn-global-primary:active, 
+.btn-global-primary:focus {
+  background-color: var(--brand-red, #651A16) !important;
+  border: 2px solid #ffffff !important;
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  /* Tighten the main form container */
+  .form-container, 
+  .contact-form-wrapper, 
+  .volunteer-form-wrapper {
+    padding: 24px 16px !important;
+    margin: 16px auto !important;
+  }
+
+  /* Reduce spacing between individual form inputs */
+  .form-group, 
+  .input-wrapper {
+    margin-bottom: 16px !important;
+  }
+
+  /* If the form uses flexbox or grid for layout */
+  form {
+    gap: 16px !important;
+  }
+
+  /* Clamp maximum vertical padding for all major sections */
+  section, 
+  .section, 
+  .page-section, 
+  main > div {
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
+  }
+
+  /* Reduce excessive block margins for headings and paragraphs */
+  h1, h2, h3, .section-title {
+    margin-bottom: 16px !important;
+  }
+
+  p {
+    margin-bottom: 16px !important;
+  }
+
+  /* Target any utility spacer classes pushing content too far apart */
+  .spacer, .mt-large, .mb-large, .py-large {
+    margin-top: clamp(16px, 4vw, 32px) !important;
+    margin-bottom: clamp(16px, 4vw, 32px) !important;
+    padding-top: clamp(16px, 4vw, 32px) !important;
+    padding-bottom: clamp(16px, 4vw, 32px) !important;
+  }
+}

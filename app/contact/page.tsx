@@ -121,16 +121,11 @@ export default function ContactPage() {
               ) : (
                 <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-8 md:p-10 shadow-[0_4px_32px_rgba(101,26,22,.1)] border border-[rgba(101,26,22,.08)]">
                   <h2 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[22px] text-[#651A16] mb-6">Send a Message</h2>
-                  <div className="space-y-4">
-                    <input type="text" placeholder="Your Name *" value={form.name} onChange={(e) => update('name', e.target.value)}
-                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-[16px] font-[family-name:var(--font-plus-jakarta)] focus:outline-none focus:border-[#651A16]" required />
-                    <input type="email" placeholder="Email Address *" value={form.email} onChange={(e) => update('email', e.target.value)}
-                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-[16px] font-[family-name:var(--font-plus-jakarta)] focus:outline-none focus:border-[#651A16]" required />
-                    <input type="tel" placeholder="Phone (optional)" value={form.phone} onChange={(e) => update('phone', e.target.value)}
-                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-[16px] font-[family-name:var(--font-plus-jakarta)] focus:outline-none focus:border-[#651A16]" />
-                    <select value={form.subject} onChange={(e) => update('subject', e.target.value)}
-                      required
-                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-[16px] font-[family-name:var(--font-plus-jakarta)] focus:outline-none focus:border-[#651A16] bg-white">
+                  <div className="space-y-4 form-group">
+                    <input type="text" placeholder="Your Name *" value={form.name} onChange={(e) => update('name', e.target.value)} required />
+                    <input type="email" placeholder="Email Address *" value={form.email} onChange={(e) => update('email', e.target.value)} required />
+                    <input type="tel" placeholder="Phone (optional)" value={form.phone} onChange={(e) => update('phone', e.target.value)} />
+                    <select value={form.subject} onChange={(e) => update('subject', e.target.value)} required>
                       <option value="">Subject</option>
                       <option value="General Enquiry">General Enquiry</option>
                       <option value="Donation">Donation / Payment Help</option>
@@ -139,18 +134,16 @@ export default function ContactPage() {
                       <option value="Partnership">Partnership</option>
                       <option value="Media">Media / Press</option>
                     </select>
-                    <textarea placeholder="Your Message *" value={form.message} onChange={(e) => update('message', e.target.value)}
-                      rows={5} required
-                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-[16px] font-[family-name:var(--font-plus-jakarta)] focus:outline-none focus:border-[#651A16] resize-none" />
+                    <textarea placeholder="Your Message *" value={form.message} onChange={(e) => update('message', e.target.value)} rows={5} required />
                   </div>
                   {errorMsg && <div className="bg-red-50 border border-red-200 rounded-xl p-3 text-sm text-red-700 mt-4 mb-2">{errorMsg}</div>}
                   <button
                     type="submit"
                     disabled={status === 'loading'}
-                    className="w-full mt-5 bg-[#651A16] text-white font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] py-[18px] rounded-2xl hover:bg-[#8B2520] disabled:opacity-50 transition-all flex items-center justify-center gap-2 shadow-xl"
+                    className="mt-5 btn-global-primary"
                   >
                     {status === 'loading' ? (
-                      <><span className="inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Sending…</>
+                      <><span className="inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin align-middle mr-2" /> Sending…</>
                     ) : 'Send Message →'}
                   </button>
                 </form>

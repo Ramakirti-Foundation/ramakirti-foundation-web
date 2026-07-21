@@ -46,10 +46,10 @@ export default function EducationInitiativePage() {
         <section className="relative py-24 border-t border-gray-100 overflow-hidden">
           {/* Background image on the right */}
           <div
-            className="absolute inset-0 w-full h-full bg-cover bg-center bg-image"
+            className="absolute inset-0 w-full h-full bg-cover bg-center bg-image hidden md:block"
           />
           {/* Gradient overlay: solid white on left fading to transparent on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/10 md:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/10 md:to-transparent hidden md:block" />
 
           <div className="relative z-10 max-w-[1280px] mx-auto px-5">
             <div className="max-w-[700px]">
@@ -67,7 +67,7 @@ export default function EducationInitiativePage() {
               <div className="mt-10">
                 <Link
                   href="/donate"
-                  className="inline-flex items-center justify-center font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-white px-9 py-[18px] rounded-2xl min-w-[250px] no-underline bg-[#651A16] hover:bg-[#8B2520] transition-colors">
+                  className="btn-global-primary no-underline">
                   Support a Child's Education
                 </Link>
               </div>

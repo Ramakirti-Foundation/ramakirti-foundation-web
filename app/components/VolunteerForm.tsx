@@ -43,28 +43,28 @@ export default function VolunteerForm() {
             </div>
           )}
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 form-group">
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-1">Full Name *</label>
-              <input type="text" name="name" required className="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-[#6E1110] outline-none transition-colors" />
+              <input type="text" name="name" required />
             </div>
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-1">Email *</label>
-              <input type="email" name="email" required className="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-[#6E1110] outline-none transition-colors" />
+              <input type="email" name="email" required />
             </div>
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-1">Phone Number *</label>
-              <input type="tel" name="phone" required className="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-[#6E1110] outline-none transition-colors" />
+              <input type="tel" name="phone" required />
             </div>
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-1">City *</label>
-              <input type="text" name="city" required className="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-[#6E1110] outline-none transition-colors" />
+              <input type="text" name="city" required />
             </div>
           </div>
 
-          <div>
+          <div className="form-group">
             <label className="block text-sm font-bold text-gray-700 mb-1">Availability *</label>
-            <select name="availability" required className="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-[#6E1110] outline-none transition-colors bg-white">
+            <select name="availability" required>
               <option value="Weekly">Weekly (A few hours every week)</option>
               <option value="Bi-Weekly">Bi-Weekly (Every other week)</option>
               <option value="Monthly">Monthly (Once a month)</option>
@@ -99,10 +99,10 @@ export default function VolunteerForm() {
           <button 
             type="submit" 
             disabled={status === 'loading'}
-            className="w-full bg-[#6E1110] text-white font-bold py-4 rounded-xl hover:bg-[#8B2520] transition-colors disabled:opacity-70 mt-4 flex items-center justify-center gap-2"
+            className="mt-4 btn-global-primary"
           >
             {status === 'loading' ? (
-              <><span className="inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Submitting...</>
+              <><span className="inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin align-middle mr-2" /> Submitting...</>
             ) : 'Submit Application'}
           </button>
         </form>
