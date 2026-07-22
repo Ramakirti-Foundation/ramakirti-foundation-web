@@ -74,7 +74,7 @@ const INITIATIVES = {
     description: 'Non-formal education centers for underprivileged children',
   },
   food: {
-    label: '🍚 Food for Poor',
+    label: '🍚 Food and Nutrition',
     description: 'Free meals and essential items to slum communities',
   },
   women: {
@@ -206,13 +206,12 @@ export default function DonationPortal() {
               {[1, 2, 3].map((step) => (
                 <div
                   key={step}
-                  className={`flex items-center justify-center w-10 h-10 rounded-full font-bold transition-all ${
-                    step === currentStep
+                  className={`flex items-center justify-center w-10 h-10 rounded-full font-bold transition-all ${step === currentStep
                       ? 'bg-[#C9A84C] text-white scale-110'
                       : step < currentStep
                         ? 'bg-[#C9A84C] text-white'
                         : 'bg-[#E5E7EB] text-[#9CA3AF]'
-                  }`}
+                    }`}
                 >
                   {step < currentStep ? <Check className="w-5 h-5" /> : step}
                 </div>
@@ -290,11 +289,10 @@ export default function DonationPortal() {
                           <button
                             type="button"
                             onClick={() => field.onChange(amount)}
-                            className={`py-3 px-2 rounded-lg font-bold text-sm transition-all ${
-                              field.value === amount
+                            className={`py-3 px-2 rounded-lg font-bold text-sm transition-all ${field.value === amount
                                 ? 'bg-[#C9A84C] text-white scale-105'
                                 : 'bg-[#F3F4F8] text-[#1F2937] border-2 border-[#E5E7EB] hover:border-[#C9A84C]'
-                            }`}
+                              }`}
                           >
                             ₹{amount.toLocaleString()}
                           </button>

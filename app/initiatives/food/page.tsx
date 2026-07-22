@@ -35,7 +35,7 @@ export default function FoodInitiativePage() {
               Our Core Pillar
             </span>
             <h1 className="text-white font-extrabold mb-4 title">
-              Food For Poor
+              Food and Nutrition
             </h1>
             <p className="description">
               We provide free food and other essential items and help the underprivileged. We give food during their classes time as well as distribute food in slum areas for their parents and family too.

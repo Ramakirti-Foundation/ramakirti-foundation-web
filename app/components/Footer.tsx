@@ -5,7 +5,7 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaWhatsapp } from 'reac
 const QUICK_LINKS = [
   { href: '/about', label: 'About Us' },
   { href: '/initiatives/education', label: 'Education' },
-  { href: '/initiatives/food', label: 'Food for Poor' },
+  { href: '/initiatives/food', label: 'Food and Nutrition' },
   { href: '/initiatives/women', label: 'Women Empowerment' },
   { href: '/requirements', label: 'Requirements' },
 ];

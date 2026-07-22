@@ -184,7 +184,7 @@ export default async function HomePage() {
                 <div className="w-[64px] h-[64px] rounded-xl flex items-center justify-center text-[28px] mb-5 bg-[#C9A84C]/10 text-[#6E1110]">
                   🍽️
                 </div>
-                <h3 className="text-[22px] font-[family-name:var(--font-plus-jakarta)] font-bold text-[#6E1110] mb-3">Food for Poor</h3>
+                <h3 className="text-[22px] font-[family-name:var(--font-plus-jakarta)] font-bold text-[#6E1110] mb-3">Food and Nutrition</h3>
                 <p className="text-gray-600 text-[15px] leading-relaxed mb-6 flex-grow">
                   We provide free food and other essential items and help the underprivileged. We give food during their classes time as well as distribute food in slum areas for their parents and family too.
                 </p>

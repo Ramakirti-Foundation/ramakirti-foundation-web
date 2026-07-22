@@ -7,12 +7,12 @@ import { usePathname } from 'next/navigation';
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
-  { 
-    label: 'Initiatives ▼', 
+  {
+    label: 'Initiatives ▼',
     dropdown: [
       { href: '/recent-initiatives', label: 'Recent Events' },
       { href: '/initiatives/education', label: 'Education' },
-      { href: '/initiatives/food', label: 'Food for Poor' },
+      { href: '/initiatives/food', label: 'Food and Nutrition' },
       { href: '/initiatives/women', label: 'Women Empowerment' }
     ]
   },
@@ -44,11 +44,10 @@ export default function Navigation({ transparent = false }: { transparent?: bool
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isLight
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isLight
             ? 'bg-transparent'
             : 'bg-white shadow-sm backdrop-blur-md'
-        }`}
+          }`}
         style={{ height: '64px' }}
         role="navigation"
         aria-label="Main navigation"
@@ -84,8 +83,8 @@ export default function Navigation({ transparent = false }: { transparent?: bool
             {NAV_LINKS.map((link) => {
               if (link.dropdown) {
                 return (
-                  <div 
-                    key="initiatives" 
+                  <div
+                    key="initiatives"
                     className="relative group flex items-center h-full py-2"
                     onMouseEnter={() => setDropdownOpen(true)}
                     onMouseLeave={() => setDropdownOpen(false)}
@@ -98,9 +97,9 @@ export default function Navigation({ transparent = false }: { transparent?: bool
                     >
                       Initiatives <span className="text-[10px] ml-1 opacity-70">▼</span>
                     </button>
-                    
+
                     {/* Dropdown Menu */}
-                    <div 
+                    <div
                       className={`absolute top-full left-0 w-48 bg-white rounded-xl shadow-lg py-2 border border-gray-100 transition-all duration-200 ${dropdownOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 translate-y-2 invisible'}`}
                     >
                       {link.dropdown.map((subItem) => (
@@ -126,11 +125,11 @@ export default function Navigation({ transparent = false }: { transparent?: bool
                     color: pathname === link.href
                       ? (isLight ? '#ffffff' : '#651A16')
                       : isLight
-                      ? 'rgba(255,255,255,.9)'
-                      : '#374151',
+                        ? 'rgba(255,255,255,.9)'
+                        : '#374151',
                     fontWeight: pathname === link.href ? '800' : '600',
-                    borderBottom: pathname === link.href 
-                      ? (isLight ? '2px solid #ffffff' : '2px solid #651A16') 
+                    borderBottom: pathname === link.href
+                      ? (isLight ? '2px solid #ffffff' : '2px solid #651A16')
                       : '2px solid transparent',
                   }}
                 >
@@ -169,8 +168,8 @@ export default function Navigation({ transparent = false }: { transparent?: bool
                   background: isLight ? '#fff' : '#374151',
                   transform: menuOpen
                     ? i === 0 ? 'rotate(45deg) translate(5px, 5px)'
-                    : i === 1 ? 'scaleX(0)'
-                    : 'rotate(-45deg) translate(5px, -5px)'
+                      : i === 1 ? 'scaleX(0)'
+                        : 'rotate(-45deg) translate(5px, -5px)'
                     : 'none',
                   opacity: menuOpen && i === 1 ? 0 : 1,
                 }}
@@ -197,7 +196,7 @@ export default function Navigation({ transparent = false }: { transparent?: bool
             if (link.dropdown) {
               return (
                 <div key="initiatives-mobile" className="py-2">
-                  <button 
+                  <button
                     onClick={() => setMobileDropdownOpen(mobileDropdownOpen === link.label ? null : link.label)}
                     className="w-full text-left font-semibold text-sm px-3 text-[#374151] mb-2 flex justify-between items-center"
                   >

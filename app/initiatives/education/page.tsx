@@ -53,16 +53,35 @@ export default function EducationInitiativePage() {
 
           <div className="relative z-10 max-w-[1280px] mx-auto px-5">
             <div className="max-w-[700px]">
-              <h2 className="font-extrabold mb-6 section-title">
+              {/* <h2 className="font-extrabold mb-6 section-title">
                 Empowering Through Knowledge
-              </h2>
+              </h2> */}
               <div className="space-y-5 text-gray-800 font-medium text-[16.5px] leading-[1.85]">
+                <span className="font-bold text-sm uppercase tracking-[.15em] mb-4 block" style={{ color: '#C9A84C', fontFamily: 'var(--font-plus-jakarta, sans-serif)' }}>
+                  Every Child Deserves the Opportunity to Learn.
+                </span>
                 <p>
-                  We are pleased to announce that our organization has recently established a new Non-Formal education centre in the beautiful city of Gurgaon. Our main objective behind this initiative is to provide access to quality education to underprivileged individuals who lack access to formal education systems. Our highly dedicated and passionate teachers are fully committed to imparting impactful knowledge to students, enabling them to gain an in-depth understanding of subjects that will allow them to achieve success throughout their lives.
+                  Education has the power to transform lives. It gives children the confidence to dream, the knowledge to grow and the opportunity to build a better future.
                 </p>
                 <p>
-                  At our Non-Formal education centre, we believe that education is a human right and that everyone should receive the opportunity to learn, grow, and fulfill their potential. Our center provides all the necessary resources to students, including books, writing materials, and learning tools that are essential for an enriching academic experience. Join us, and become a pioneer in transforming lives through education.
+                  At Ramakirti Foundation, we work to support children from underserved communities by providing access to educational support and learning opportunities. Our goal is to help children continue their learning journey and develop the confidence and skills they need to move forward in life.Our education initiatives focus on creating a supportive learning environment where children can learn at their own pace, develop their abilities and discover their potential.
                 </p>
+                <span className="font-bold text-sm uppercase tracking-[.15em] mb-4 block" style={{ color: '#C9A84C', fontFamily: 'var(--font-plus-jakarta, sans-serif)' }}>
+                  Our work includes:
+                </span>
+                <ul>
+                  <li>Educational support for children</li>
+                  <li>Academic learning assistance</li>
+                  <li>Support with educational materials</li>
+                  <li>Encouraging regular learning and school participation</li>
+                  <li>Creating a safe and supportive learning environment</li>
+                  <li>Supporting children's overall development</li>
+                </ul>
+                <p>We believe that education should not be limited by a child's financial circumstances. Every child deserves the chance to learn, grow and dream of a brighter future.</p>
+                <span className="font-bold text-sm uppercase tracking-[.15em] mb-4 block" style={{ color: '#C9A84C', fontFamily: 'var(--font-plus-jakarta, sans-serif)' }}>
+                  Our Goal
+                </span>
+                <p>To help children become more confident, capable and independent individuals by providing them with the support and opportunities they need to learn and grow.Because education is not just preparation for life—it is the foundation of a better life.</p>
               </div>
               <div className="mt-10">
                 <Link

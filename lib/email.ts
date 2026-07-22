@@ -67,7 +67,7 @@ export async function sendReceiptEmail(data: ReceiptEmailData) {
             </div>
             <div class="summary-row">
               <span>Initiative:</span>
-              <strong>${data.initiative === 'education' ? '📚 Education' : data.initiative === 'food' ? '🍚 Food for Poor' : '💪 Women Empowerment'}</strong>
+              <strong>${data.initiative === 'education' ? '📚 Education' : data.initiative === 'food' ? '🍚 Food and Nutrition' : '💪 Women Empowerment'}</strong>
             </div>
             <div class="summary-row">
               <span>Donation Amount:</span>
@@ -83,13 +83,12 @@ export async function sendReceiptEmail(data: ReceiptEmailData) {
 
           <h3>Your Impact:</h3>
           <p>
-            ${
-              data.initiative === 'education'
-                ? `₹${data.amount.toLocaleString('en-IN')} will provide educational materials and support for ${Math.floor(data.amount / 500)} underprivileged children.`
-                : data.initiative === 'food'
-                  ? `₹${data.amount.toLocaleString('en-IN')} will provide nutritious meals for approximately ${Math.floor(data.amount / 250)} children and families.`
-                  : `₹${data.amount.toLocaleString('en-IN')} will support skills training and empowerment programs for women in our community.`
-            }
+            ${data.initiative === 'education'
+      ? `₹${data.amount.toLocaleString('en-IN')} will provide educational materials and support for ${Math.floor(data.amount / 500)} underprivileged children.`
+      : data.initiative === 'food'
+        ? `₹${data.amount.toLocaleString('en-IN')} will provide nutritious meals for approximately ${Math.floor(data.amount / 250)} children and families.`
+        : `₹${data.amount.toLocaleString('en-IN')} will support skills training and empowerment programs for women in our community.`
+    }
           </p>
 
           <p>
