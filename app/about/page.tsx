@@ -45,7 +45,6 @@ export default function AboutPage() {
         <section className="py-24 bg-[#FDF8F7]">
           <div className="max-w-[1280px] mx-auto px-5">
             <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-16 items-center">
-
               {/* Text Content */}
               <div>
                 <span className="font-bold text-sm uppercase tracking-[.15em] mb-4 block" style={{ color: '#C9A84C', fontFamily: 'var(--font-plus-jakarta, sans-serif)' }}>
@@ -90,17 +89,15 @@ export default function AboutPage() {
                   className="about-image"
                 />
               </div>
-
             </div>
-          </div>
-          <div className="relative z-10 max-w-[1280px] mx-auto px-5">
-            <div className="mt-12 flex justify-end">
-              <Link
+            <div className="relative z-10 max-w-[1280px] mx-auto px-5">
+              <div className="mt-12 flex">
+                <Link
                 href="/donate"
-                className="btn-global-primary no-underline"
-              >
+                className="btn-global-primary no-underline">
                 Support Our Mission
-              </Link>
+                </Link>
+              </div>
             </div>
           </div>
         </section>
