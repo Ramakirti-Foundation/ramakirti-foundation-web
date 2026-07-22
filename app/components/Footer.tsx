@@ -111,7 +111,7 @@ export default function Footer() {
               <div className="flex items-start gap-3 text-base text-gray-400 leading-relaxed font-medium">
                 <span className="mt-1 text-[#C9A84C]">📍</span>
                 <span>
-                  Ramakirti Foundation, Sector 57, Tigra, behind the Legend Apartment, Gurugram, Haryana
+                  Ramakirti Foundation, Sector 57 Near Government Middle School , TIGRA, Gurugram, Haryana
                 </span>
               </div>
               <div className="flex items-center gap-3 text-base text-gray-400 font-medium">

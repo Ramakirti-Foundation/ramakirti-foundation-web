@@ -72,7 +72,7 @@ const jsonLd = {
   },
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '89 FF Housing Board Society, Sector 33',
+    streetAddress: 'Sector 57 Near Government Middle School , TIGRA',
     addressLocality: 'Gurgaon',
     addressRegion: 'Haryana',
     postalCode: '122022',
@@ -107,7 +107,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="min-h-screen">
           {children}
         </main>
-        <a 
+        <a
           href="https://wa.me/918851502840?text=Hi,%20I%20want%20to%20know%20more%20about%20volunteering/donating"
           target="_blank"
           rel="noopener noreferrer"

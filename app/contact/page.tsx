@@ -63,22 +63,26 @@ export default function ContactPage() {
               <h2 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[28px] text-[#651A16] mb-8">Get in Touch</h2>
               <div className="space-y-6">
                 {[
-                  { icon: '📍', title: 'Address', content: 'Sector 57, Tigra, behind the Legend Apartment, Gurgaon — 122022, Haryana' },
-                  { icon: '📞', title: 'Phone / WhatsApp', content: '+91 88515-02840', href: 'tel:+918851502840' },
-                  { icon: '✉️', title: 'Email', content: 'support@ramakirtifoundation.co.in', href: 'mailto:support@ramakirtifoundation.co.in' },
-                  { icon: '🕐', title: 'Office Hours', content: 'Monday to Saturday, 9 AM – 6 PM IST' },
-                ].map(({ icon, title, content, href }) => (
+                  { icon: '📍', title: 'Address', items: [{ content: 'Sector 57 Near Government Middle School , TIGRA, Gurgaon — 122022, Haryana', href: undefined }] },
+                  { icon: '📞', title: 'Phone / WhatsApp', items: [{ content: '+91 88515-02840', href: 'tel:+918851502840' }, { content: '+91 88264-98125', href: 'tel:+918826498125' }] },
+                  { icon: '✉️', title: 'Email', items: [{ content: 'support@ramakirtifoundation.co.in', href: 'mailto:support@ramakirtifoundation.co.in' }] },
+                  { icon: '🕐', title: 'Office Hours', items: [{ content: 'Monday to Saturday, 9 AM – 6 PM IST', href: undefined }] },
+                ].map(({ icon, title, items }) => (
                   <div key={title} className="flex gap-4 items-start">
                     <div className="w-12 h-12 rounded-xl bg-[rgba(101,26,22,.1)] flex items-center justify-center text-[22px] flex-shrink-0">
                       {icon}
                     </div>
                     <div>
                       <div className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[15px] text-gray-800 mb-0.5">{title}</div>
-                      {href ? (
-                        <a href={href} className="text-[#651A16] font-bold hover:underline no-underline text-base email-text">{content}</a>
-                      ) : (
-                        <p className="text-[#651A16] font-bold text-base email-text">{content}</p>
-                      )}
+                      <div className="flex flex-col">
+                        {items.map((item, i) => (
+                          item.href ? (
+                            <a key={i} href={item.href} className="text-[#651A16] font-bold hover:underline no-underline text-base email-text">{item.content}</a>
+                          ) : (
+                            <p key={i} className="text-[#651A16] font-bold text-base email-text">{item.content}</p>
+                          )
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -105,8 +109,8 @@ export default function ContactPage() {
                 <h3 className="font-[family-name:var(--font-plus-jakarta)] font-bold text-[18px] text-[#651A16] mb-2">🏢 Corporate CSR / Partnerships</h3>
                 <p className="text-gray-600 text-sm">
                   Looking to fulfill your CSR mandate or partner with a transparent NGO? We offer employee volunteering, brand placement, and impact reporting. Email us at{' '}
-                  <a href="mailto:csr@ramakirtifoundation.co.in" className="text-[#651A16] font-bold hover:underline no-underline email-text">
-                    csr@ramakirtifoundation.co.in
+                  <a href="mailto:info@ramakirtifoundation.co.in" className="text-[#651A16] font-bold hover:underline no-underline email-text">
+                    info@ramakirtifoundation.co.in
                   </a>
                 </p>
               </div>
