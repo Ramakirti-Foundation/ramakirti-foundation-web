@@ -5,11 +5,11 @@ import Footer from '@/app/components/Footer';
 import './page.css';
 
 export const metadata: Metadata = {
-    title: 'Education Initiative | Ramakirti Foundation',
-    description: 'Education is a right to everyone. We have setup non-formal education centres in Gurgaon to teach the underprivileged.',
+    title: 'Grocery Initiative | Ramakirti Foundation',
+    description: 'Providing essential support and grocery distribution for families facing financial hardship.',
 };
 
-export default function EducationInitiativePage() {
+export default function GroceryInitiativePage() {
     return (
         <>
             <Navigation />
