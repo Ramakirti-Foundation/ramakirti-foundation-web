@@ -79,7 +79,7 @@ export default function AboutPage() {
               <div className="about-images-container">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/img/Initiatives/A Day in Parsona/A Day in Pasona.webp"
+                  src="/img/Initiatives/A Day in Zinnia/A Day in Zinnia.webp"
                   alt="Ramakirti Foundation team"
                   className="about-image"
                 />

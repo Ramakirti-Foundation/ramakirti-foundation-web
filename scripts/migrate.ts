@@ -5,7 +5,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 const DESC_MAP: Record<string, string> = {
-  'a day in Zinia': 'Volunteers from Zinia extended a day of joy and learning to our children through fun-filled activities and educational games, spreading smiles and support throughout our learning centres.',
+  'a day in zinnia': 'Volunteers from Zinnia extended a day of joy and learning to our children through fun-filled activities and educational games, spreading smiles and support throughout our learning centres.',
   '14th november': "Children's Day is always special at Ramakirti Foundation. We celebrated 300+ students with fun games, creative activities, a special lunch, and gifts — ensuring every child felt valued, loved, and seen on their special day.",
   '77th independence': "On India's 77th Independence Day, we organised a flag hoisting ceremony, patriotic performances, and interactive sessions about our nation's freedom struggle — a day of pride, culture, and community bonding.",
   'air india': 'Air India partnered with us for a remarkable day of giving, bringing corporate employees to interact with our children through educational activities, storytelling, and fun games — bringing warmth and inspiration to our learning centres.',

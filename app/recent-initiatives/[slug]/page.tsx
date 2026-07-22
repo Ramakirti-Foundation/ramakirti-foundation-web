@@ -15,7 +15,7 @@ const COLLABORATOR_MAP: Record<string, { name: string; type: string }> = {
   'jee one':          { name: 'Jee One Group', type: 'Community Partner' },
   'llm university':   { name: 'LLM University', type: 'Academic Partner' },
   'pallavi arts':     { name: 'Pallavi Arts', type: 'Cultural Partner' },
-  'parsona':          { name: 'Pasona Group', type: 'Corporate Volunteer Partner' },
+  'zinnia':           { name: 'Zinnia', type: 'Corporate Volunteer Partner' },
   'roca':             { name: 'Roca Company', type: 'Corporate CSR Partner' },
   'golf':             { name: 'Golf Competition Organisers', type: 'Event Partner' },
 };
