@@ -69,11 +69,11 @@ export default function EducationInitiativePage() {
                                 </span>
                                 <p>Our aim is to provide timely support while preserving the dignity and self-respect of every individual we serve.</p>
                             </div>
-                            <div className="mt-10">
+                            <div className="mt-12">
                                 <Link
                                     href="/donate"
                                     className="btn-global-primary no-underline">
-                                    Support a Child's Education
+                                    Donate Now
                                 </Link>
                             </div>
                         </div>
