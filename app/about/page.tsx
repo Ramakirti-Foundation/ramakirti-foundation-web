@@ -106,44 +106,20 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/10 md:to-transparent hidden md:block" />
 
           <div className="relative z-10 max-w-[1280px] mx-auto px-5">
-            <div className="max-w-[750px]">
-              <span className="font-bold text-sm uppercase tracking-[.15em] mb-4 block" style={{ color: '#C9A84C', fontFamily: 'var(--font-plus-jakarta, sans-serif)' }}>
-                Why We Exist
-              </span>
-              <h2 className="font-extrabold mb-8" style={{ color: '#6E1110', fontSize: 'clamp(28px,4vw,40px)', fontFamily: 'var(--font-plus-jakarta, sans-serif)' }}>
-                OUR MISSION
-              </h2>
-              <div className="text-gray-800 font-medium text-[16.5px] leading-[1.85] text-left space-y-5">
-                <p>
-                  Our organization is dedicated to making a meaningful difference in the lives of underprivileged souls who need our help. Our uplifting work gives hope and support to those who may otherwise face difficult and challenging times, and we take pride in being a trusted partner in making a positive impact in the world.
-                </p>
-                <p>
-                  But to achieve our goals, we need your help. Whether through kind donations or your own precious time, your support will go a long way in making a difference. There’s no limit to the positive change we can make when we work together to support those in need. So please, join us in our mission to help the underprivileged, as it wouldn’t be possible without your generosity and compassion.
-                </p>
-                <p>
-                  As a compassionate community we aim to extend our assistance to those who are less fortunate. To achieve this goal, our organization has endeavored to provide financial aid to the impoverished individuals, families, and communities. As empathetic citizens, we also aim to provide them with the much-needed moral support to empower them to overcome their difficult situations.
-                </p>
-                <p>
-                  In addition, we regularly conduct awareness campaigns to promote greater understanding and support for those living in poverty. By providing a safe and supportive environment for these individuals, we hope to create a community of care and compassion that will provide them with the resources they need to thrive. We believe that everyone deserves equal opportunities in life, irrespective of their economic background, and we are committed to making a difference by extending a helping hand to those in need.
-                </p>
-              </div>
-
-              <div className="mt-12">
-                <Link
-                  href="/donate"
-                  className="btn-global-primary no-underline"
-                >
-                  Support Our Mission
-                </Link>
-              </div>
+            <div className="mt-12">
+              <Link
+                href="/donate"
+                className="btn-global-primary no-underline"
+              >
+                Support Our Mission
+              </Link>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-      </main>
+    </main >
       <Footer />
-
-
     </>
   );
 }
