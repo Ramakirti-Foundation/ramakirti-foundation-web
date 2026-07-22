@@ -28,8 +28,8 @@ export default function TestimonialCarousel({ testimonials }: { testimonials: an
             </div>
           </div>
         ))}
-        {/* Duplicate for infinite loop */}
-        {testimonials.map(({ quote, name, role, initials }, i) => (
+        {/* Duplicate for infinite loop only when there are multiple testimonials */}
+        {testimonials.length > 1 && testimonials.map(({ quote, name, role, initials }, i) => (
           <div
             key={i + "-dup"}
             aria-hidden="true"
