@@ -53,12 +53,40 @@ export default function FoodInitiativePage() {
 
           <div className="relative z-10 max-w-[1280px] mx-auto px-5 flex justify-end">
             <div className="max-w-[700px]">
-              <h2 className="font-extrabold mb-6 section-title">
+              {/* <h2 className="font-extrabold mb-6 section-title">
                 Eradicating Hunger, One Meal at a Time
-              </h2>
+              </h2> */}
+              <span className="font-bold text-sm uppercase tracking-[.15em] mb-4 block" style={{ color: '#C9A84C', fontFamily: 'var(--font-plus-jakarta, sans-serif)' }}>
+                Nourishing Communities with Care and Dignity
+              </span>
               <div className="space-y-5 text-gray-800 font-medium text-[16.5px] leading-[1.85]">
                 <p>
-                  Our organization is proud to offer invaluable assistance to the underprivileged. We recognize the challenges that many people face in making ends meet and strive to provide support wherever possible. Specifically, we provide free food and other essential items to those in need. Our services extend beyond simply providing food – we also work tirelessly to distribute our resources in a way that is most impactful. For example, during the day, we provide food to students who may not receive regular meals otherwise. We also make it a priority to distribute food to slum areas, ensuring that parents and their families have access to the nutrition they need. Our goal is to make a meaningful difference in the lives of those we assist, and we are committed to continuing to do so for as long as there is a need.
+                  Access to nutritious food is a basic human need. Yet many families and individuals continue to struggle with food insecurity and the rising cost of essential groceries.Through our food and nutrition initiatives, Ramakirti Foundation works to support vulnerable individuals and families by providing meals, groceries and essential food supplies wherever support is needed.
+                </p>
+                <span className="font-bold text-sm uppercase tracking-[.15em] mb-4 block" style={{ color: '#C9A84C', fontFamily: 'var(--font-plus-jakarta, sans-serif)' }}>
+                  Our Aim
+                </span>
+                <p>
+                  Our aim is not only to provide food but also to ensure that people receive support with dignity, compassion and respect.
+                </p>
+                <span className="font-bold text-sm uppercase tracking-[.15em] mb-4 block" style={{ color: '#C9A84C', fontFamily: 'var(--font-plus-jakarta, sans-serif)' }}>
+                  Our work includes:
+                </span>
+                <ul style={{ listStyleType: 'disc', listStylePosition: 'outside', color: 'black' }}>
+                  <li>Distribution of nutritious meals</li>
+                  <li>Grocery and ration support</li>
+                  <li>Support for vulnerable families</li>
+                  <li>Community food distribution drives</li>
+                  <li>Emergency food assistance wherever possible</li>
+                </ul>
+                <p>
+                  Every meal can make a difference. For a child, it can provide the energy to learn. For a family, it can provide relief during a difficult time.
+                </p>
+                <span className="font-bold text-sm uppercase tracking-[.15em] mb-4 block" style={{ color: '#C9A84C', fontFamily: 'var(--font-plus-jakarta, sans-serif)' }}>
+                  Our Goal
+                </span>
+                <p>
+                  To help ensure that no individual or family in the communities we serve has to face hunger without support.Together, we can help nourish lives and build stronger communities.
                 </p>
               </div>
               <div className="mt-10">

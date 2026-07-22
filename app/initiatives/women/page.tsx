@@ -53,16 +53,23 @@ export default function WomenEmpowermentPage() {
 
           <div className="relative z-10 max-w-[1280px] mx-auto px-5">
             <div className="max-w-[700px]">
-              <h2 className="font-extrabold mb-6 section-title">
-                Empowering the Architects of Society
-              </h2>
+              <span className="font-bold text-sm uppercase tracking-[.15em] mb-4 block subtitle">
+                Empowering Women. Strengthening Communities.
+              </span>
               <div className="space-y-5 text-gray-800 font-medium text-[16.5px] leading-[1.85]">
                 <p>
-                  As a society, we need to recognize the incredible contributions made by girls and women. Through their tireless efforts as daughters, sisters, wives, and in countless other roles, they have been building communities, nurturing lives, and making the world a better place. It is high time that we acknowledge their value and their position, and empower them to continue to thrive and flourish. Let us encourage girls and women to embrace their passions and pursue their dreams with confidence and determination, knowing that they have the potential to truly make a difference in the world and inspire others to do the same. By empowering girls and women, we can build a more equal and just society where everyone is free to pursue their ambitions and reach their full potential.
-                </p>
-                <p>
-                  We create pathways to financial independence for women through skill training programs in tailoring, handicrafts, makeup, and digital literacy — turning hesitation into courage, one workshop at a time.
-                </p>
+                  When women have access to opportunities, knowledge and support, entire families and communities become stronger.At Ramakirti Foundation, we believe that women deserve the opportunity to live with confidence, dignity and independence. Our women’s empowerment initiatives aim to create awareness, provide support and encourage opportunities that help women move towards greater self-reliance.</p>
+                <span className="font-bold text-sm uppercase tracking-[.15em] mb-4 block subtitle">
+                  Our work focuses on:
+                </span>
+                <ul style={{ listStyleType: 'disc', listStylePosition: 'outside', color: 'black' }}>
+                  <li>Promoting awareness and confidence</li>
+                  <li>Encouraging skill development</li>
+                  <li>Supporting financial independence</li>
+                  <li>Creating awareness about opportunities and resources</li>
+                  <li>Promoting dignity, equality and inclusion</li>
+                  <li>Supporting women in building a more secure future</li>
+                </ul>
                 <p>
                   <strong>The Rani Story</strong> is one of our key initiatives that documents and celebrates the journeys of women in our empowerment programs — giving voice to their struggles, triumphs, and aspirations as an inspiration to others.
                 </p>
