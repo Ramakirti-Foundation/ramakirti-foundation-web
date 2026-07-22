@@ -13,7 +13,8 @@ const NAV_LINKS = [
       { href: '/recent-initiatives', label: 'Recent Events' },
       { href: '/initiatives/education', label: 'Education' },
       { href: '/initiatives/food', label: 'Food and Nutrition' },
-      { href: '/initiatives/women', label: 'Women Empowerment' }
+      { href: '/initiatives/women', label: 'Women Empowerment' },
+      { href: '/initiatives/grocery', label: 'Grocery' },
     ]
   },
   { href: '/requirements', label: 'Requirements' },
@@ -45,8 +46,8 @@ export default function Navigation({ transparent = false }: { transparent?: bool
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isLight
-            ? 'bg-transparent'
-            : 'bg-white shadow-sm backdrop-blur-md'
+          ? 'bg-transparent'
+          : 'bg-white shadow-sm backdrop-blur-md'
           }`}
         style={{ height: '64px' }}
         role="navigation"
@@ -72,9 +73,9 @@ export default function Navigation({ transparent = false }: { transparent?: bool
               >
                 Ramakirti Foundation
               </span>
-              <span className="text-[11px] font-medium tracking-wide" style={{ color: '#C9A84C' }}>
+              {/* <span className="text-[11px] font-medium tracking-wide" style={{ color: '#C9A84C' }}>
                 Educate. Nourish. Empower.
-              </span>
+              </span> */}
             </div>
           </Link>
 
