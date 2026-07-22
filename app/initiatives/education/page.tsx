@@ -69,7 +69,7 @@ export default function EducationInitiativePage() {
                 <span className="font-bold text-sm uppercase tracking-[.15em] mb-4 block" style={{ color: '#C9A84C', fontFamily: 'var(--font-plus-jakarta, sans-serif)' }}>
                   Our work includes:
                 </span>
-                <ul style={{ listStyleType: 'disc' }}>
+                <ul style={{ listStyleType: 'disc', listStylePosition: 'inside', color: 'black' }}>
                   <li>Educational support for children</li>
                   <li>Academic learning assistance</li>
                   <li>Support with educational materials</li>
