@@ -93,14 +93,16 @@ export default function AboutPage() {
 
             </div>
           </div>
-          <div className="mt-12">
+          <div className="relative z-10 max-w-[1280px] mx-auto px-5">
+            <div className="mt-12 flex justify-end">
               <Link
                 href="/donate"
                 className="btn-global-primary no-underline"
               >
-                  Support Our Mission
+                Support Our Mission
               </Link>
             </div>
+          </div>
         </section>
       </main>
       <Footer />
