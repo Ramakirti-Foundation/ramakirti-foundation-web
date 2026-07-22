@@ -7,6 +7,8 @@ import { AnimatedCounter } from '@/app/components/AnimatedCounter';
 import TestimonialCarousel from '@/app/components/TestimonialCarousel';
 import './page.css';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Ramakirti Foundation | Best NGO in Gurgaon',
   description: 'A Non-profit organization working for the education to poor and women empowerment, organizing different events for them. Join our mission today.',
@@ -21,44 +23,18 @@ export const metadata: Metadata = {
 import { db } from '@/lib/db';
 
 export default async function HomePage() {
-  const dynamicTestimonials = await db.contactMessage.findMany({
+  const testimonials = await db.contactMessage.findMany({
     where: { is_testimonial: true },
     orderBy: { created_at: 'desc' },
   });
 
-  let allTestimonials = dynamicTestimonials.map(msg => ({
+  const allTestimonials = testimonials.map(msg => ({
     stars: 5,
     quote: msg.message,
     name: msg.name || 'Anonymous',
     role: msg.subject?.replace('[Testimonial Submission] ', '') || 'Well Wisher',
     initials: (msg.name || 'AN').substring(0, 2).toUpperCase()
   }));
-
-  if (allTestimonials.length === 0) {
-    allTestimonials = [
-      {
-        stars: 5,
-        quote: "Ramakirti Foundation has completely transformed our village. The dedication of their volunteers to educating our children is unparalleled. I've never seen such a positive impact in such a short time.",
-        name: "Rahul Sharma",
-        role: "Community Member",
-        initials: "RS"
-      },
-      {
-        stars: 5,
-        quote: "I've been volunteering with them for a year now, and the transparency with which they operate is amazing. Every penny is accounted for, and the smiles on the children's faces are priceless.",
-        name: "Priya Patel",
-        role: "Volunteer",
-        initials: "PP"
-      },
-      {
-        stars: 5,
-        quote: "Their women empowerment programs have given me the skills and confidence to start my own small business. I am forever grateful to the team for believing in us.",
-        name: "Sunita Devi",
-        role: "Beneficiary",
-        initials: "SD"
-      }
-    ];
-  }
   return (
     <>
       <Navigation transparent />
@@ -221,7 +197,13 @@ export default async function HomePage() {
             </div>
 
             <div className="-mx-5 px-5">
-              <TestimonialCarousel testimonials={allTestimonials} />
+              {allTestimonials.length > 0 ? (
+                <TestimonialCarousel testimonials={allTestimonials} />
+              ) : (
+                <div className="rounded-[24px] bg-white p-16 text-center shadow-sm border border-gray-200">
+                  <p className="text-gray-500 text-lg">No testimonials are published yet. Approve testimonials from the admin panel to display them here.</p>
+                </div>
+              )}
             </div>
           </div>
         </section>
