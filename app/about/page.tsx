@@ -98,7 +98,7 @@ export default function AboutPage() {
                 href="/donate"
                 className="btn-global-primary no-underline"
               >
-                Support Our Mission
+                  Support Our Mission
               </Link>
             </div>
         </section>
