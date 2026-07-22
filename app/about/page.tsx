@@ -93,20 +93,7 @@ export default function AboutPage() {
 
             </div>
           </div>
-        </section>
-
-        {/* Mission Section */}
-        <section className="relative py-24 border-t border-gray-100 overflow-hidden">
-          {/* Background image on the right */}
-          <div
-            className="absolute inset-0 w-full h-full bg-cover bg-center hidden md:block"
-            style={{ backgroundImage: "url('/img/Initiatives/Children and Parent Councelling Session/Gallery/IMG-20230717-WA0010.jpg')" }}
-          />
-          {/* Gradient overlay: solid white on left fading to transparent on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/10 md:to-transparent hidden md:block" />
-
-          <div className="relative z-10 max-w-[1280px] mx-auto px-5">
-            <div className="mt-12">
+          <div className="mt-12">
               <Link
                 href="/donate"
                 className="btn-global-primary no-underline"
@@ -114,11 +101,8 @@ export default function AboutPage() {
                 Support Our Mission
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-    </main >
+        </section>
+      </main>
       <Footer />
     </>
   );
