@@ -54,10 +54,10 @@ export default async function HomePage() {
           />
           <div className="absolute inset-0 bg-gradient-to-br from-[rgba(110,17,16,.82)] via-[rgba(110,17,16,.55)] to-[rgba(201,168,76,.18)]" />
           <div className="relative z-10 text-center text-white px-6 max-w-[940px] mx-auto py-24 w-full mt-12">
-            <h1 className="text-[clamp(34px,5vw,56px)] font-[family-name:var(--font-plus-jakarta)] font-extrabold leading-[1.13] mb-6 text-white text-shadow-lg drop-uppercase">
+            <h1 className="text-[clamp(34px,5vw,56px)] font-[family-name:var(--font-plus-jakarta)] font-extrabold leading-[1.13] mb-6 text-white drop-uppercase">
               Ramakirti Foundation
             </h1>
-            <p className="text-[20px] text-white/90 mb-10 max-w-[640px] mx-auto leading-[1.65] drop-shadow-md">
+            <p className="text-[20px] text-white/90 mb-10 max-w-[640px] mx-auto leading-[1.65]">
               We transform lives through quality education, nutritious meals, and women&apos;s empowerment — one family at a time in Haryana&apos;s most underserved communities.
             </p>
             <div className="hero-buttons-container">
@@ -83,7 +83,7 @@ export default async function HomePage() {
                 { target: 320, suffix: '+', label: 'Women Trained' },
               ].map(({ target, suffix, label }, i) => (
                 <div key={label} className={`stat-item ${i > 0 ? 'md:border-l border-white/25 md:pl-8' : ''}`}>
-                  <span className="block font-[family-name:var(--font-plus-jakarta)] font-extrabold text-[28px] text-white drop-shadow">
+                  <span className="block font-[family-name:var(--font-plus-jakarta)] font-extrabold text-[28px] text-white">
                     <AnimatedCounter target={target} suffix={suffix} />
                   </span>
                   <span className="text-sm text-white/80">{label}</span>
@@ -245,8 +245,8 @@ export default async function HomePage() {
           <div className="absolute bottom-[-20%] right-[10%] w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,rgba(201,168,76,.12),transparent_60%)] pointer-events-none" />
 
           <div className="relative z-10 max-w-[1280px] mx-auto px-5">
-            <span className="text-[#E5C96A] font-[family-name:var(--font-plus-jakarta)] font-bold text-sm uppercase tracking-[.15em] drop-shadow">Take Action Today</span>
-            <h2 className="text-[clamp(28px,4vw,44px)] font-[family-name:var(--font-plus-jakarta)] font-bold text-white mt-4 mb-5 drop-shadow-md">Ready to Make a Difference?</h2>
+            <span className="text-[#E5C96A] font-[family-name:var(--font-plus-jakarta)] font-bold text-sm uppercase tracking-[.15em]">Take Action Today</span>
+            <h2 className="text-[clamp(28px,4vw,44px)] font-[family-name:var(--font-plus-jakarta)] font-bold text-white mt-4 mb-5">Ready to Make a Difference?</h2>
             <p className="text-white/85 text-[19px] mb-12 max-w-[580px] mx-auto leading-relaxed">
               Whether you donate, volunteer, or simply share our story — every single action ripples outward and changes a life.
             </p>
