@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
-
+/* testing */
 export const metadata: Metadata = {
   title: 'About Us | Ramakirti Foundation',
   description: 'Learn about Ramakirti Foundation, charitable trust established in 2021. Our team committed helping destitute girls and children rewrite their destiny.',
@@ -93,9 +93,9 @@ export default function AboutPage() {
             <div className="relative z-10 max-w-[1280px] mx-auto px-5">
               <div className="mt-12 flex">
                 <Link
-                href="/donate"
-                className="btn-global-primary no-underline">
-                Support Our Mission
+                  href="/donate"
+                  className="btn-global-primary no-underline">
+                  Support Our Mission
                 </Link>
               </div>
             </div>
