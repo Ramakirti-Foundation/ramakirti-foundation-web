@@ -1,0 +1,426 @@
+/**
+ * FILE: app/globals.css
+ * DESCRIPTION: Global styles and Tailwind directives
+ */
+
+/* Root variables */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Colors */
+  --color-primary: #651A16; /* Deep Red */
+  --color-emerald: #C9A84C; /* Golden */
+  --color-amber: #C9A84C;
+  --color-neutral-50: #FAFBFF;
+  --color-neutral-900: #1F2937;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Prefetch DNS for external APIs */
+head::before {
+  content: '';
+  dns-prefetch: url(https:api.razorpay.com);
+  dns-prefetch: url(https:cdn.sanity.io);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* Base elements */
+body {
+  @apply bg-white text-gray-700 font-sans;
+  font-family: var(--font-atkinson), 'Inter', 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333333;
+  transition: background-color var(--transition-base);
+}
+p {
+  margin-bottom: 1rem;
+}
+@media (min-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+
+main {
+  @apply min-h-screen;
+}
+
+/* Links */
+a {
+  @apply text-[#651A16] hover:text-[#C9A84C] transition-colors;
+  text-decoration-skip-ink: auto;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-heading font-bold text-[#651A16]; /* Standardize all headings to Primary Red */
+  letter-spacing: -0.01em;
+}
+
+h1 { @apply text-4xl md:text-5xl; }
+h2 { @apply text-3xl md:text-4xl; }
+h3 { @apply text-2xl md:text-3xl; }
+h4 { @apply text-xl md:text-2xl; }
+
+/* Utility classes */
+.container-tight {
+  @apply max-w-4xl mx-auto px-4 md:px-8;
+}
+
+.container-wide {
+  @apply max-w-7xl mx-auto px-4 md:px-8;
+}
+
+.btn-primary {
+  @apply px-6 py-3 bg-[#6E1110] text-white font-bold rounded-lg hover:bg-[#8B2520] transition-all active:scale-95;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 bg-neutral-200 text-neutral-900 font-bold rounded-lg hover:bg-neutral-300 transition-all;
+}
+
+/* Focus visible (accessibility) */
+:focus-visible {
+  outline: 3px solid var(--color-emerald);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Custom Global Styles for Components */
+
+
+/* Cards */
+.pillar-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.pillar-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(110,17,16,.12);
+  border-color: transparent;
+}
+.pillar-link {
+  transition: gap 0.2s ease;
+}
+.pillar-card:hover .pillar-link {
+  gap: 12px;
+}
+
+.testimonial-card {
+  box-shadow: 0 4px 12px rgba(110,17,16,.04);
+  transition: transform 0.3s ease;
+}
+.testimonial-card:hover {
+  transform: translateY(-4px);
+}
+
+.trust-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.trust-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(110,17,16,.08);
+}
+
+/* Volunteer Cards */
+.volunteer-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.volunteer-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(110,17,16,.12);
+}
+
+/* Initiative Cards */
+.initiative-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.initiative-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(110,17,16,.18) !important;
+}
+.initiative-cover-img {
+  transition: transform 0.5s ease;
+}
+.initiative-card:hover .initiative-cover-img {
+  transform: scale(1.07);
+}
+
+/* Gallery Thumbs */
+.gallery-thumb {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.gallery-thumb:hover {
+  transform: scale(1.03);
+}
+.gallery-img {
+  transition: transform 0.5s ease;
+}
+.gallery-thumb:hover .gallery-img {
+  transform: scale(1.1);
+}
+.gallery-overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.gallery-thumb:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* WhatsApp FAB styling for responsiveness */
+@media (max-width: 768px) {
+  .whatsapp-fab {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+  }
+  .whatsapp-fab-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+@media (min-width: 769px) {
+  .whatsapp-fab {
+    bottom: 24px;
+    right: 24px;
+    width: 60px;
+    height: 60px;
+  }
+  .whatsapp-fab-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Footer Link styling */
+.footer-section a, .footer-section .quick-links a, .footer-section .contact-info p {
+  color: #ffffff !important;
+  opacity: 0.9;
+  text-decoration: none;
+}
+.footer-section a:hover {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Footer text colors */
+.footer-section p, 
+.footer-section span, 
+.footer-section li, 
+.footer-section .contact-info, 
+.footer-section .copyright { 
+  color: #ffffff !important; 
+  opacity: 0.9; 
+}
+
+/* Fix rogue scroll border */
+/* Body Overflow and Mobile Fixes */
+body, html, .page-wrapper { overflow-x: hidden; max-width: 100vw; }
+
+/* Remove white border */
+.contact-page-container, footer { border: none !important; }
+
+/* Contact email text */
+.contact-info-text, .email-text { word-break: break-all; overflow-wrap: anywhere; }
+
+/* About images */
+.about-images-container { display: flex; flex-direction: column; gap: 16px; width: 100%; }
+.about-image { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 12px; }
+
+@media (min-width: 768px) {
+  .about-images-container {
+    flex-direction: column;
+  }
+}
+
+/* WhatsApp Button */
+.whatsapp-support-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background-color: #25D366; /* Standard WA Green */
+  color: white; border-radius: 30px; padding: 12px 24px;
+  width: 100%; max-width: 320px;
+  margin: 16px auto; /* Reduced margin */
+  transition: transform 0.2s ease;
+  font-weight: bold;
+}
+.whatsapp-support-btn:hover {
+  transform: scale(1.02);
+}
+.whatsapp-support-btn svg { width: 24px; height: 24px; fill: currentColor; }
+
+/* Checkbox Groups for Forms */
+.checkbox-group-container { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+.checkbox-item { display: flex; align-items: center; width: 100%; padding: 8px 0; }
+
+@media (min-width: 768px) {
+  .checkbox-group-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .checkbox-item {
+    width: calc(50% - 6px);
+  }
+}
+
+/* Universal Form Input Styling */
+.form-group input, 
+.form-group textarea, 
+.form-group select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #cccccc;
+  border-radius: 16px;
+  font-family: var(--font-atkinson), sans-serif;
+  font-size: 16px;
+  background-color: #ffffff;
+  color: #333333;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Focus States for Accessibility and UX */
+.form-group input:focus, 
+.form-group textarea:focus, 
+.form-group select:focus {
+  border-color: var(--brand-red, #651A16);
+  box-shadow: 0 0 0 3px rgba(101, 26, 22, 0.15);
+  outline: none;
+}
+
+/* Global Primary Button Class */
+.btn-global-primary {
+  display: inline-block;
+  width: 100%;
+  max-width: 320px;
+  padding: 14px 24px;
+  border-radius: 30px;
+  background-color: var(--brand-red, #651A16);
+  color: #ffffff !important;
+  font-weight: bold;
+  text-align: center;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, border 0.2s ease;
+}
+
+.btn-global-primary:hover {
+  transform: scale(1.02);
+  background-color: #8B2520;
+}
+
+.btn-global-primary:active, 
+.btn-global-primary:focus {
+  background-color: var(--brand-red, #651A16) !important;
+  border: 2px solid #ffffff !important;
+  outline: none;
+}
+
+/* Global White Button Class */
+.btn-global-white {
+  display: inline-block;
+  width: 100%;
+  max-width: 320px;
+  padding: 14px 24px;
+  border-radius: 30px;
+  background-color: #ffffff;
+  color: var(--brand-red, #651A16) !important;
+  font-weight: bold;
+  text-align: center;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, border 0.2s ease;
+}
+
+.btn-global-white:hover {
+  transform: scale(1.02);
+  background-color: #f8f9fa;
+}
+
+.btn-global-white:active, 
+.btn-global-white:focus {
+  background-color: #ffffff !important;
+  border: 2px solid var(--brand-red, #651A16) !important;
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  /* Tighten the main form container */
+  .form-container, 
+  .contact-form-wrapper, 
+  .volunteer-form-wrapper,
+  .form-wrapper {
+    padding: 16px 10px !important;
+    margin: 16px auto !important;
+  }
+
+  /* Reduce spacing between individual form inputs */
+  .form-group, 
+  .input-wrapper {
+    margin-bottom: 12px !important;
+  }
+
+  input, textarea { 
+    width: 100%; 
+    padding: 12px; 
+    box-sizing: border-box; 
+  }
+
+  /* If the form uses flexbox or grid for layout */
+  form {
+    gap: 12px !important;
+  }
+
+  /* Clamp maximum vertical padding for all major sections */
+  section, 
+  .section, 
+  .page-section, 
+  main > div {
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
+  }
+
+  /* Reduce excessive block margins for headings and paragraphs */
+  h1, h2, h3, .section-title {
+    margin-bottom: 16px !important;
+  }
+
+  p {
+    margin-bottom: 16px !important;
+  }
+
+  /* Target any utility spacer classes pushing content too far apart */
+  .spacer, .mt-large, .mb-large, .py-large {
+    margin-top: clamp(16px, 4vw, 32px) !important;
+    margin-bottom: clamp(16px, 4vw, 32px) !important;
+    padding-top: clamp(16px, 4vw, 32px) !important;
+    padding-bottom: clamp(16px, 4vw, 32px) !important;
+  }
+}

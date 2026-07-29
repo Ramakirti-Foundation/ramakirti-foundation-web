@@ -1,0 +1,68 @@
+'use client';
+
+import { useState } from 'react';
+import { submitTestimonialAction } from '@/app/actions/submitTestimonial';
+
+export default function TestimonialForm() {
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  return (
+    <div className="form-wrapper max-w-2xl mx-auto bg-white p-5 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+      <div className="text-center mb-6">
+        <h3 className="text-2xl font-bold text-[#6E1110] font-[family-name:var(--font-plus-jakarta)]">Share Your Experience</h3>
+        <p className="text-gray-500 mt-2 text-sm">Have you volunteered, donated, or partnered with us? We'd love to hear your story.</p>
+      </div>
+
+      {status === 'success' ? (
+        <div className="bg-green-50 text-green-700 p-4 rounded-lg text-center font-bold">
+          Thank you! Your testimonial has been submitted for review.
+        </div>
+      ) : (
+        <form
+          action={async (formData) => {
+            setStatus('loading');
+            setErrorMsg(null);
+            try {
+              await submitTestimonialAction(formData);
+              setStatus('success');
+            } catch (e: any) {
+              setStatus('error');
+              setErrorMsg(e.message || 'Failed to submit. Please try again.');
+            }
+          }}
+          className="space-y-4"
+        >
+          {status === 'error' && (
+            <div className="bg-red-50 text-red-600 p-3 rounded text-sm text-center font-semibold">
+              {errorMsg}
+            </div>
+          )}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 form-group">
+            <div>
+              <label className="block text-xs font-bold text-gray-700 uppercase mb-1">Your Name</label>
+              <input type="text" name="name" required />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-gray-700 uppercase mb-1">Email</label>
+              <input type="email" name="email" required />
+            </div>
+          </div>
+          <div className="form-group">
+            <label className="block text-xs font-bold text-gray-700 uppercase mb-1">Your Story</label>
+            <textarea name="message" required rows={4}></textarea>
+          </div>
+          <button
+            type="submit"
+            disabled={status === 'loading'}
+            className="mt-4 btn-global-primary w-full"
+          >
+            {status === 'loading' ? (
+              <><span className="inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin align-middle mr-2" /> Submitting...</>
+            ) : 'Submit Testimonial'}
+          </button>
+        </form>
+      )}
+    </div>
+  );
+}

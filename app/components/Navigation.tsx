@@ -1,0 +1,251 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+const NAV_LINKS = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/gallery', label: 'Gallery' },
+  {
+    label: 'Initiatives ▼',
+    dropdown: [
+      { href: '/recent-initiatives', label: 'Recent Events' },
+      { href: '/initiatives/education', label: 'Education' },
+      { href: '/initiatives/food', label: 'Food and Nutrition' },
+      { href: '/initiatives/women', label: 'Women Empowerment' },
+      { href: '/initiatives/grocery', label: 'Grocery' },
+    ]
+  },
+  { href: '/requirements', label: 'Requirements' },
+  { href: '/volunteer', label: 'Volunteer' },
+  { href: '/contact', label: 'Contact' },
+];
+
+export default function Navigation({ transparent = false }: { transparent?: boolean }) {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null);
+  const pathname = usePathname();
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => { setMenuOpen(false); setDropdownOpen(false); }, [pathname]);
+
+  const isLight = transparent && !scrolled;
+
+  return (
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isLight
+          ? 'bg-transparent'
+          : 'bg-white shadow-sm backdrop-blur-md'
+          }`}
+        style={{ height: '64px' }}
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        <div className="w-full h-full flex items-center justify-between px-4 lg:px-6">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-3 no-underline flex-shrink-0 mr-auto lg:mr-4 xl:mr-8">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/img/logo.jpg"
+              alt="Ramakirti Foundation logo"
+              width={36}
+              height={36}
+              className="rounded-lg object-cover flex-shrink-0 border border-gray-200"
+            />
+            <div className="flex flex-col leading-tight">
+              <span
+                className="font-bold text-[16px] tracking-tight transition-colors duration-300"
+                style={{
+                  color: isLight ? '#fff' : '#651A16',
+                }}
+              >
+                Ramakirti Foundation
+              </span>
+              {/* <span className="text-[11px] font-medium tracking-wide" style={{ color: '#C9A84C' }}>
+                Educate. Nourish. Empower.
+              </span> */}
+            </div>
+          </Link>
+
+          {/* Desktop links */}
+          <div className="hidden lg:flex items-center justify-center gap-2 lg:gap-3 xl:gap-5 h-full flex-grow">
+            {NAV_LINKS.map((link) => {
+              if (link.dropdown) {
+                return (
+                  <div
+                    key="initiatives"
+                    className="relative group flex items-center h-full py-2"
+                  >
+                    <button
+                      className="flex items-center text-[13px] xl:text-sm font-semibold transition-colors duration-200 cursor-pointer whitespace-nowrap"
+                      style={{
+                        color: isLight ? 'rgba(255,255,255,.9)' : '#374151',
+                      }}
+                    >
+                      Initiatives <span className="text-[10px] ml-1 opacity-70">▼</span>
+                    </button>
+
+                    {/* Dropdown Menu */}
+                    <div
+                      className="absolute top-full left-0 w-48 bg-white rounded-xl shadow-lg py-2 border border-gray-100 transition-all duration-200 opacity-0 translate-y-2 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible"
+                    >
+                      {link.dropdown.map((subItem) => (
+                        <Link
+                          key={subItem.href}
+                          href={subItem.href}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#651A16] font-medium no-underline"
+                        >
+                          {subItem.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href!}
+                  className="no-underline text-[13px] xl:text-sm transition-all duration-200 flex items-center h-full py-2 whitespace-nowrap text-center px-1"
+                  style={{
+                    color: pathname === link.href
+                      ? (isLight ? '#ffffff' : '#651A16')
+                      : isLight
+                        ? 'rgba(255,255,255,.9)'
+                        : '#374151',
+                    fontWeight: pathname === link.href ? '800' : '600',
+                    borderBottom: pathname === link.href
+                      ? (isLight ? '2px solid #ffffff' : '2px solid #651A16')
+                      : '2px solid transparent',
+                  }}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* CTA */}
+          <div className="hidden lg:flex items-center gap-3 ml-3 h-full flex-shrink-0">
+            <Link
+              href="/donate"
+              className="inline-flex items-center justify-center font-bold text-sm text-white no-underline rounded-lg px-6 py-2.5 transition-all duration-300 hover:text-white hover:bg-[#8B2520] whitespace-nowrap"
+              style={{
+                background: '#651A16',
+                boxShadow: '0 4px 16px rgba(101,26,22,.35)',
+              }}
+            >
+              Donate Now
+            </Link>
+          </div>
+
+          {/* Hamburger */}
+          <button
+            className="lg:hidden flex flex-col gap-[5px] p-2 rounded-lg ml-auto"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+          >
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                className="block w-6 h-[2px] rounded-sm transition-all duration-300"
+                style={{
+                  background: isLight ? '#fff' : '#374151',
+                  transform: menuOpen
+                    ? i === 0 ? 'rotate(45deg) translate(5px, 5px)'
+                      : i === 1 ? 'scaleX(0)'
+                        : 'rotate(-45deg) translate(5px, -5px)'
+                    : 'none',
+                  opacity: menuOpen && i === 1 ? 0 : 1,
+                }}
+              />
+            ))}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile menu */}
+      <div
+        ref={menuRef}
+        className="lg:hidden fixed z-40 left-0 right-0 bg-white transition-all duration-300"
+        style={{
+          top: '64px',
+          borderTop: menuOpen ? '4px solid #6E1110' : '0px solid transparent',
+          maxHeight: menuOpen ? '100vh' : '0',
+          overflow: 'hidden',
+          visibility: menuOpen ? 'visible' : 'hidden',
+        }}
+      >
+        <div className="p-5">
+          {NAV_LINKS.map((link) => {
+            if (link.dropdown) {
+              return (
+                <div key="initiatives-mobile" className="py-2">
+                  <button
+                    onClick={() => setMobileDropdownOpen(mobileDropdownOpen === link.label ? null : link.label)}
+                    className="w-full text-left font-semibold text-sm px-3 text-[#374151] mb-2 flex justify-between items-center"
+                  >
+                    {link.label}
+                  </button>
+                  {mobileDropdownOpen === link.label && (
+                    <div className="flex flex-col gap-1 pl-4">
+                      {link.dropdown.map((subItem) => (
+                        <Link
+                          key={subItem.href}
+                          href={subItem.href}
+                          onClick={() => setMenuOpen(false)}
+                          className="block font-medium text-sm py-2 px-3 rounded-lg no-underline transition-colors text-gray-600 hover:bg-gray-50 hover:text-[#6E1110]"
+                        >
+                          {subItem.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                  <div className="border-b border-gray-100 mt-2"></div>
+                </div>
+              );
+            }
+            return (
+              <Link
+                key={link.href}
+                href={link.href!}
+                onClick={() => setMenuOpen(false)}
+                className="block font-semibold text-base py-3 px-3 rounded-lg border-b border-gray-100 last:border-0 no-underline transition-colors"
+                style={{
+                  fontFamily: 'var(--font-plus-jakarta, sans-serif)',
+                  color: pathname === link.href ? '#6E1110' : '#374151',
+                  background: pathname === link.href ? 'rgba(110,17,16,.05)' : 'transparent',
+                }}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+          <div className="mt-4">
+            <Link
+              href="/donate"
+              className="block w-full text-center font-bold text-white py-4 rounded-lg no-underline hover:bg-[#8B2520] hover:text-white transition-colors"
+              style={{ background: '#651A16' }}
+            >
+              Donate Now
+            </Link>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

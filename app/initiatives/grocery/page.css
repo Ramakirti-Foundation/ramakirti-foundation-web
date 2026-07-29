@@ -1,0 +1,42 @@
+.hero-section {
+    padding-top: calc(72px + 48px);
+    padding-bottom: 64px;
+    min-height: 400px;
+    background: linear-gradient(135deg, #3A0D0B 0%, #6E1110 60%, #8B2520 100%);
+}
+
+.breadcrumb {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.breadcrumb-link {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.subtitle {
+    color: #E5C96A;
+    font-family: var(--font-plus-jakarta, sans-serif);
+}
+
+.title {
+    font-size: clamp(32px, 5vw, 56px);
+    font-family: var(--font-plus-jakarta, sans-serif);
+}
+
+.description {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 18px;
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.bg-image {
+    background-image: url('/img/Initiatives/Amity University/Amity University.jpg');
+}
+
+.section-title {
+    color: #6E1110;
+    font-size: clamp(28px, 4vw, 40px);
+    font-family: var(--font-plus-jakarta, sans-serif);
+}

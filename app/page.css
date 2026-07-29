@@ -1,0 +1,210 @@
+.hero-bg {
+  background-image: url('/img/Education is right to everyone.webp');
+}
+
+.pillars-bg {
+  background-image: url('/img/Initiatives/Covid Mask Distribution/covid-mask-1_result-e1655897386651.webp');
+}
+
+.delay-100 {
+  transition-delay: 100ms;
+}
+
+.delay-200 {
+  transition-delay: 200ms;
+}
+
+/* Hero buttons */
+.hero-buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .hero-buttons-container {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+.hero-button {
+  width: 100%;
+  max-width: 320px;
+  padding: 14px 24px;
+  border-radius: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.15s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-button:hover {
+  transform: scale(1.02);
+}
+.hero-button:active, .hero-button:focus, .cta-button:active, .cta-button:focus {
+  background-color: var(--brand-red, #a11f24) !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+  outline: none;
+}
+
+
+/* Stats */
+.stats-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+  width: 100%;
+}
+.stat-item {
+  margin: 12px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .stats-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .stat-item {
+    margin: 0;
+  }
+}
+
+/* Info strip marquee */
+.info-strip-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  width: 100%;
+}
+.info-strip-content {
+  display: flex;
+  animation: scroll-marquee 20s linear infinite;
+}
+@keyframes scroll-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.info-strip-wrapper:hover .info-strip-content, .info-strip-wrapper:active .info-strip-content {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .info-strip-content {
+    animation: none;
+    overflow-x: auto;
+  }
+}
+
+/* What We Do Cards & Trust Cards */
+@media (max-width: 768px) {
+  .section-pillars {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    gap: 24px;
+  }
+}
+
+.pillar-card {
+  aspect-ratio: auto;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.trust-cards-container {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .trust-cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+.trust-card {
+  min-height: 280px;
+  padding: 24px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Testimonials Section */
+.section-testimonials {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .section-testimonials {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}
+
+.testimonial-card {
+  aspect-ratio: auto;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  transform: translateY(-4px);
+}
+
+.testimonials-wrapper {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+}
+
+.testimonials-track {
+  display: flex;
+  gap: 24px;
+  animation: auto-scroll-testimonials 35s linear infinite;
+  width: max-content;
+}
+
+.testimonials-track:hover,
+.testimonials-track:focus-within,
+.testimonials-track:active {
+  animation-play-state: paused;
+}
+
+@keyframes auto-scroll-testimonials {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-track {
+    animation: none;
+    overflow-x: auto;
+  }
+}
