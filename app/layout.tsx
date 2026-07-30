@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     images: ['/rf_bg_2.jpg'],
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: '/img/logo.jpg',
     apple: '/apple-touch-icon.png',
   },
   robots: {
